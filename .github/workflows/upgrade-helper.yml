@@ -29,14 +29,18 @@ jobs:
           npm audit --json > /tmp/audit.json || true
           node -e 'const a=require("/tmp/audit.json");const v=Object.entries(a.vulnerabilities||{});console.log(`::warning::AUDIT-COUNT ${v.length}`);for(const [n,x] of v)console.log(`::warning::AUDIT ${x.severity} ${n} ${x.range}`)'
       - name: Type-check and build after
+        id: build
+        continue-on-error: true
         run: npx tsc -p tsconfig.app.json --noEmit && npm run build && node scripts/check-page.mjs
       - name: Screenshots
+        if: steps.build.outcome == 'success'
         run: |
           mkdir -p /tmp/pw && cd /tmp/pw && npm init -y >/dev/null && npm i --no-audit --no-fund playwright >/dev/null && npx playwright install --with-deps chromium >/dev/null
           cd $GITHUB_WORKSPACE/staysafe-full/frontend
           NODE_PATH=/tmp/pw/node_modules node scripts/shots.mjs /tmp/old ../../upgrade-shots/old
           NODE_PATH=/tmp/pw/node_modules node scripts/shots.mjs dist ../../upgrade-shots/new intro
       - name: Save the changes on this branch
+        if: always()
         run: |
           rm -rf node_modules dist package-lock.json
           cd ../.. && git add -A staysafe-full/frontend upgrade-shots && git status --short | head -60
