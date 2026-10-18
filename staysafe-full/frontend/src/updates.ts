@@ -88,3 +88,12 @@ export function orUpdate<T>(load: () => Promise<T>): () => Promise<T> {
     throw err;   // not an update (e.g. offline): let the page handle it as before
   });
 }
+
+/** "Check for updates" button: updates at once if there is a newer version. */
+export async function checkForUpdateNow(): Promise<"updating" | "latest" | "offline"> {
+  const latest = await latestVersion();
+  if (!latest) return "offline";
+  if (latest === APP_VERSION || APP_VERSION === "dev") return "latest";
+  updateNow(latest);
+  return "updating";
+}

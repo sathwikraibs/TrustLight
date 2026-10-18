@@ -6,12 +6,14 @@ import { FeedbackCard } from "@/components/FeedbackCard";
 import { SupportCard } from "@/components/SupportCard";
 import { useI18n, LANGUAGES } from "@/i18n";
 import { clearHistory, loadHistory } from "@/history";
+import { APP_VERSION, checkForUpdateNow } from "@/updates";
 import { IconCheck, IconLanguage, IconHistory, IconInfo, IconArrowRight, IconGlobe } from "@/icons";
 
 export function SettingsPage({ onNavigate }: { onNavigate: (path: string) => void }) {
   const { t, lang, setLang } = useI18n();
   const [historyCount, setHistoryCount] = useState(() => loadHistory().length);
   const [cleared, setCleared] = useState(false);
+  const [upd, setUpd] = useState<"idle" | "checking" | "updating" | "latest" | "offline">("idle");
 
   return (
     <div className="space-y-6">
@@ -70,6 +72,26 @@ export function SettingsPage({ onNavigate }: { onNavigate: (path: string) => voi
       <SupportCard />
 
       <InstallCard place="settings" />
+
+      {/* App updates */}
+      <Card className="p-5 sm:p-6">
+        <div className="mb-1 flex items-center gap-2">
+          <IconCheck className="h-5 w-5 text-brand-600" />
+          <h2 className="font-heading text-lg font-semibold text-ink-900">{t("settings.updates")}</h2>
+        </div>
+        <p className="font-body text-sm text-dustyblue-600">{t("settings.updatesText")}</p>
+        <p className="mb-4 mt-1 font-body text-xs text-dustyblue-500">{t("settings.version", { v: APP_VERSION.slice(0, 7) })}</p>
+        <button
+          type="button"
+          disabled={upd === "checking" || upd === "updating"}
+          onClick={async () => { setUpd("checking"); setUpd(await checkForUpdateNow()); }}
+          className="btn-press w-full rounded-2xl bg-brand-600 px-5 py-3 font-body text-sm font-bold text-cream-50 shadow-warm-sm hover:bg-brand-700 disabled:opacity-70"
+        >
+          {upd === "checking" || upd === "updating" ? t("settings.checking") : t("settings.checkUpdate")}
+        </button>
+        {upd === "latest" && <p className="mt-3 font-body text-sm text-ink-800" role="status">{t("settings.latest")}</p>}
+        {upd === "offline" && <p className="mt-3 font-body text-sm text-rust-600" role="status">{t("settings.offline")}</p>}
+      </Card>
 
       {/* Data */}
       <Card className="p-5 sm:p-6">

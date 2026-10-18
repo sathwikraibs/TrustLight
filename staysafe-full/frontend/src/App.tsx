@@ -5,6 +5,7 @@ import { API_BASE } from "@/config";
 import { receiveShare } from "@/share";
 import { orUpdate } from "@/updates";
 import { UpdateGate } from "@/components/UpdateGate";
+import { MovedGate } from "@/components/MovedGate";
 
 // Each tool's page is downloaded only when needed, so the home page opens faster.
 // Shortly after the home page shows, the rest are fetched quietly so moving around stays instant.
@@ -89,6 +90,7 @@ export default function App() {
       <Layout currentPath={path} onNavigate={navigate}>
         <Suspense fallback={<PageLoading />}>{renderPage(path, navigate)}</Suspense>
       </Layout>
+      <MovedGate />
       <UpdateGate />
     </>
   );

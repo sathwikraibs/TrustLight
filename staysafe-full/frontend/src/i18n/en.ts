@@ -346,6 +346,13 @@ const enBase = {
   },
 
   settings: {
+    updates: "App updates",
+    updatesText: "TrustLight updates itself. You can also check now.",
+    version: "Version {v}",
+    checkUpdate: "Check for updates",
+    checking: "Checking...",
+    latest: "You have the newest TrustLight.",
+    offline: "Couldn't check right now. Please try again in a moment.",
     title: "Settings",
     subtitle: "Choose your language and manage your data on this device.",
     language: "Language",
@@ -358,6 +365,15 @@ const enBase = {
     clear: "Clear my check history",
     cleared: "History cleared",
     about: "About TrustLight & privacy",
+  },
+  moved: {
+    title: "TrustLight has a new address",
+    body: "Your TrustLight app was added from our old address, so sharing from WhatsApp and some checks may not work. Add it again once and everything works.",
+    step1: "Tap the button below. The new TrustLight opens.",
+    step2: "Tap \"Add to my phone\" (or Chrome menu \u22ee, then Install app).",
+    step3: "Remove the old TrustLight icon: press and hold it, then Uninstall.",
+    open: "Open the new TrustLight",
+    later: "Later",
   },
   install: {
     title: "Add TrustLight to your phone",

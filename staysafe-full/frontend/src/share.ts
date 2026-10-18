@@ -3,6 +3,7 @@
 // then starts by itself. Also: the "Add TrustLight to your phone" button.
 import { useEffect, useState } from "react";
 import { setPrefill } from "@/helpBot";
+import { markShareLost } from "@/moved";
 
 const SHARE_CACHE = "staysafe-share";
 const AUTORUN_KEY = "staysafe.autorun.v1";
@@ -65,10 +66,10 @@ export async function receiveShare(): Promise<string | null> {
     const params = new URLSearchParams(location.search);
     if (!params.has("shared")) return null;
     history.replaceState(null, "", location.pathname + location.hash);
-    if (!("caches" in window)) return null;
+    if (!("caches" in window)) { markShareLost(); return null; }
     const cache = await caches.open(SHARE_CACHE);
     const res = await cache.match("/__share/data");
-    if (!res) return null;
+    if (!res) { markShareLost(); return null; }   // shared from an app added at the old address
     const data = await res.json() as { title?: string; text?: string; url?: string; file?: { name: string; type: string } | null };
     const fileRes = data.file ? await cache.match("/__share/file") : undefined;
     await cache.delete("/__share/data");

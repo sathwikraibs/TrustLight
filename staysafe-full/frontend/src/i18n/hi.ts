@@ -344,6 +344,13 @@ const hiBase: BaseDict = {
   },
 
   settings: {
+    updates: "ऐप अपडेट",
+    updatesText: "TrustLight खुद अपडेट होता है। आप अभी भी जाँच सकते हैं।",
+    version: "वर्शन {v}",
+    checkUpdate: "अपडेट जाँचें",
+    checking: "जाँच हो रही है...",
+    latest: "आपके पास सबसे नया TrustLight है।",
+    offline: "अभी जाँच नहीं हो पाई। थोड़ी देर बाद फिर कोशिश करें।",
     title: "सेटिंग्स",
     subtitle: "अपनी भाषा चुनें और इस डिवाइस पर अपना डेटा संभालें।",
     language: "भाषा",
@@ -356,6 +363,15 @@ const hiBase: BaseDict = {
     clear: "मेरी जाँच की हिस्ट्री मिटाएँ",
     cleared: "हिस्ट्री मिटा दी गई",
     about: "TrustLight के बारे में और प्राइवेसी",
+  },
+  moved: {
+    title: "TrustLight का पता बदल गया है",
+    body: "आपका TrustLight ऐप हमारे पुराने पते से जोड़ा गया था, इसलिए WhatsApp से शेयर और कुछ जाँच शायद काम न करें। एक बार फिर से जोड़ें, फिर सब ठीक चलेगा।",
+    step1: "नीचे का बटन दबाएँ। नया TrustLight खुलेगा।",
+    step2: "\"मेरे फ़ोन में जोड़ें\" दबाएँ (या Chrome मेन्यू \u22ee, फिर Install app)।",
+    step3: "पुराना TrustLight आइकन हटाएँ: उसे दबाकर रखें, फिर Uninstall।",
+    open: "नया TrustLight खोलें",
+    later: "बाद में",
   },
   install: {
     title: "TrustLight को अपने फ़ोन में जोड़ें",

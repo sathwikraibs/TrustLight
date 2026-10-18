@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useI18n } from "@/i18n";
 import { useInstall, isInstalledApp, isPhoneOrTablet } from "@/share";
 import { IconPhone, IconClose } from "@/icons";
+import { cameToReinstall } from "@/moved";
 
 const HIDE_KEY = "staysafe.installHidden.v1";
 
 function hiddenOnHome(): boolean {
+  if (cameToReinstall()) return false;   // came from "TrustLight has a new address"
   try { return localStorage.getItem(HIDE_KEY) === "1"; } catch { return false; }
 }
 
