@@ -42,7 +42,7 @@ export function EmailLeakCheck() {
         onChange={(e) => setEmail(e.target.value)}
         onKeyDown={(e) => { if (e.key === "Enter") check(); }}
         placeholder="name@example.com"
-        className="mt-3 w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-3 font-body text-base text-ink-800 outline-none transition-colors focus:border-sage-400"
+        className="mt-3 w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-3 font-body text-base text-ink-800 outline-hidden transition-colors focus:border-sage-400"
       />
       <div className="mt-3">
         <Button onClick={check} disabled={loading || !email.trim()} fullWidth>

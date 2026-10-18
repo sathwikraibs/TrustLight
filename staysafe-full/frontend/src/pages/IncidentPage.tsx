@@ -81,7 +81,7 @@ function StepCard({ n, text, resources, done, onToggle, last }: {
           </div>
         )}
         <button onClick={onToggle} className={`mt-3 flex items-center gap-1.5 font-body text-xs font-bold ${done ? "text-sage-700" : "text-dustyblue-600"}`}>
-          <span className={`flex h-4 w-4 items-center justify-center rounded border-2 ${done ? "border-sage-500 bg-sage-500 text-cream-50" : "border-dustyblue-300"}`}>
+          <span className={`flex h-4 w-4 items-center justify-center rounded-sm border-2 ${done ? "border-sage-500 bg-sage-500 text-cream-50" : "border-dustyblue-300"}`}>
             {done && <IconCheck className="h-3 w-3" />}
           </span>
           {done ? t("incidentX.done") : t("incidentX.markDone")}
@@ -125,7 +125,7 @@ export function IncidentPage({ onNavigate }: { onNavigate?: (path: string) => vo
     return (
       <div className="space-y-4">
         <PageHeader title={t("incident.title")} subtitle={t("incident.subtitle")} />
-        <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-rust-500 to-rust-600 p-6 text-cream-50 shadow-warm-lg animate-fade-up">
+        <div className="overflow-hidden rounded-3xl bg-linear-to-br from-rust-500 to-rust-600 p-6 text-cream-50 shadow-warm-lg animate-fade-up">
           <div className="flex items-start gap-4">
             <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-cream-50/20">
               <IconAlert className="h-7 w-7" />
@@ -200,7 +200,7 @@ export function IncidentPage({ onNavigate }: { onNavigate?: (path: string) => vo
       </button>
 
       {/* Plan header with progress */}
-      <div className="mb-4 overflow-hidden rounded-3xl bg-gradient-to-br from-rust-500 to-rust-600 p-5 text-cream-50 shadow-warm-lg animate-fade-up">
+      <div className="mb-4 overflow-hidden rounded-3xl bg-linear-to-br from-rust-500 to-rust-600 p-5 text-cream-50 shadow-warm-lg animate-fade-up">
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-cream-50/20"><Icon className="h-6 w-6" /></span>
           <div className="min-w-0">

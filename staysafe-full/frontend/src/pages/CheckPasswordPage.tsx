@@ -91,7 +91,7 @@ export function CheckPasswordPage({ onNavigate }: { onNavigate?: (path: string) 
             onKeyDown={(e) => { if (e.key === "Enter") handleCheck(); }}
             placeholder={t("password.placeholder")}
             autoComplete="off"
-            className="w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-3.5 pr-24 font-body text-base text-ink-800 outline-none transition-colors focus:border-sage-400"
+            className="w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-3.5 pr-24 font-body text-base text-ink-800 outline-hidden transition-colors focus:border-sage-400"
           />
           <button
             type="button"

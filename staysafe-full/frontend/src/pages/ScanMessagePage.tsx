@@ -101,7 +101,7 @@ export function ScanMessagePage({ onNavigate }: { onNavigate?: (path: string) =>
         onChange={(e) => setSender(e.target.value)}
         placeholder={t("messageX.senderPh")}
         autoCapitalize="characters"
-        className="mt-1.5 w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-2.5 font-body text-base text-ink-800 outline-none transition-colors focus:border-brand-400"
+        className="mt-1.5 w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-2.5 font-body text-base text-ink-800 outline-hidden transition-colors focus:border-brand-400"
       />
       <span className="mt-1 block font-body text-xs text-dustyblue-600">{t("messageX.senderHint")}</span>
     </label>
@@ -129,7 +129,7 @@ export function ScanMessagePage({ onNavigate }: { onNavigate?: (path: string) =>
             onChange={(e) => setText(e.target.value)}
             rows={5}
             placeholder={t("message.placeholder")}
-            className="w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-3 font-body text-base text-ink-800 outline-none transition-colors focus:border-brand-400 scrollbar-warm"
+            className="w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-3 font-body text-base text-ink-800 outline-hidden transition-colors focus:border-brand-400 scrollbar-warm"
           />
           {senderField}
           <div className="mt-4">

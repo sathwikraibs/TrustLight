@@ -93,10 +93,10 @@ export function QrCameraScanner({ onText, onPhoto, onClose }: Props) {
             {/* aiming frame with a moving scan line */}
             <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
               <div className="relative h-3/5 w-3/5 max-w-xs rounded-3xl border-4 border-cream-50/90 shadow-[0_0_0_9999px_rgba(0,0,0,0.35)]">
-                <span className="qr-cam-line absolute left-3 right-3 h-0.5 rounded bg-beam-400 shadow-[0_0_12px_#FBBF24]" />
+                <span className="qr-cam-line absolute left-3 right-3 h-0.5 rounded-sm bg-beam-400 shadow-[0_0_12px_#FBBF24]" />
               </div>
             </div>
-            <p className="absolute inset-x-0 bottom-3 text-center font-body text-sm font-semibold text-cream-50 drop-shadow">
+            <p className="absolute inset-x-0 bottom-3 text-center font-body text-sm font-semibold text-cream-50 drop-shadow-sm">
               {canAutoRead ? t("qrCam.pointAuto") : t("qrCam.point")}
             </p>
           </>

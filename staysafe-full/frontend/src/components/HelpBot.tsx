@@ -286,11 +286,11 @@ export function HelpBot({ onClose, onNavigate, currentPath, startWith = "home", 
     <div
       role="dialog"
       aria-label={form ? tx.formTitle : tx.title}
-      className="fixed inset-x-2 bottom-[5.25rem] z-50 flex max-h-[min(80vh,660px)] flex-col overflow-hidden rounded-3xl bg-cream-50 shadow-warm-lg ring-1 ring-cream-200 animate-fade-up sm:inset-x-auto sm:right-4 sm:w-[400px] lg:bottom-6 lg:right-6"
+      className="fixed inset-x-2 bottom-21 z-50 flex max-h-[min(80vh,660px)] flex-col overflow-hidden rounded-3xl bg-cream-50 shadow-warm-lg ring-1 ring-cream-200 animate-fade-up sm:inset-x-auto sm:right-4 sm:w-[400px] lg:bottom-6 lg:right-6"
       style={{ marginBottom: "env(safe-area-inset-bottom)" }}
     >
       {/* header */}
-      <div className="flex items-center gap-3 bg-gradient-to-br from-brand-800 to-brand-600 px-4 py-3.5 text-cream-50">
+      <div className="flex items-center gap-3 bg-linear-to-br from-brand-800 to-brand-600 px-4 py-3.5 text-cream-50">
         <BrandMark className="h-10 w-10 shrink-0 rounded-2xl ring-2 ring-white/20" />
         <div className="min-w-0 flex-1">
           <p className="font-heading text-base font-bold leading-tight">{form ? tx.formTitle : tx.title}</p>
@@ -336,7 +336,7 @@ export function HelpBot({ onClose, onNavigate, currentPath, startWith = "home", 
                   {b.lines[0]}
                 </p>
               ) : b.lines.map((l, j) => (
-                <p key={j} className={`whitespace-pre-wrap break-words font-body text-sm leading-relaxed ${j ? "mt-1.5" : ""} ${/^[0-9೦-೯०-९]{1,2}[.)]\s/.test(l) ? "pl-5 -indent-5" : ""}`}>{l}</p>
+                <p key={j} className={`whitespace-pre-wrap wrap-break-word font-body text-sm leading-relaxed ${j ? "mt-1.5" : ""} ${/^[0-9೦-೯०-९]{1,2}[.)]\s/.test(l) ? "pl-5 -indent-5" : ""}`}>{l}</p>
               ))}
               {b.note && (
                 <p className="mt-2 rounded-lg bg-brand-100 px-2.5 py-1.5 font-body text-xs leading-snug text-brand-700">{b.note}</p>
@@ -425,7 +425,7 @@ export function HelpBot({ onClose, onNavigate, currentPath, startWith = "home", 
           <textarea ref={box} value={input} onChange={(e) => setInput(e.target.value)} placeholder={tx.placeholder}
             rows={2} maxLength={5000}
             onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submit(e); } }}
-            className={`min-w-0 flex-1 resize-none rounded-2xl border-2 bg-cream-100 px-3.5 py-2.5 font-body text-base text-ink-800 outline-none focus:border-brand-500 ${
+            className={`min-w-0 flex-1 resize-none rounded-2xl border-2 bg-cream-100 px-3.5 py-2.5 font-body text-base text-ink-800 outline-hidden focus:border-brand-500 ${
               noAnswerYet ? "border-brand-400 ring-4 ring-brand-200/60" : "border-cream-200"}`} />
           <button type="submit" disabled={!input.trim() || thinking}
             className="shrink-0 rounded-2xl bg-brand-500 px-4 py-3 font-body text-sm font-bold text-cream-50 transition-colors hover:bg-brand-600 disabled:opacity-50">
@@ -475,7 +475,7 @@ function ContactForm({ tx, onBack, onSent, send, errorText, initialMessage = "" 
     }
   }
 
-  const field = "mt-1 w-full rounded-xl border-2 border-cream-200 bg-cream-100 px-3 py-2 font-body text-base text-ink-800 outline-none focus:border-brand-400";
+  const field = "mt-1 w-full rounded-xl border-2 border-cream-200 bg-cream-100 px-3 py-2 font-body text-base text-ink-800 outline-hidden focus:border-brand-400";
   const label = "block font-body text-xs font-bold text-ink-800";
   return (
     <form onSubmit={go} className="flex-1 space-y-3 overflow-y-auto px-4 py-4 scrollbar-warm">

@@ -65,7 +65,7 @@ function Field({ label, need, hint, children }: { label: string; need: "required
   );
 }
 
-const inputCls = "w-full rounded-xl border-2 border-cream-200 bg-cream-100 px-4 py-3 font-body text-base text-ink-800 outline-none transition-colors focus:border-brand-400 focus:bg-cream-50";
+const inputCls = "w-full rounded-xl border-2 border-cream-200 bg-cream-100 px-4 py-3 font-body text-base text-ink-800 outline-hidden transition-colors focus:border-brand-400 focus:bg-cream-50";
 
 export function ScanEmailPage({ onNavigate }: { onNavigate?: (path: string) => void }) {
   const { t, ts } = useI18n();
@@ -250,7 +250,7 @@ export function ScanEmailPage({ onNavigate }: { onNavigate?: (path: string) => v
           onNavigate={onNavigate}
         >
           <Section icon={<IconEmail className="h-5 w-5" />} title={t("email.details")} tone="info" summary={result.from || undefined}>
-            <dl className="grid gap-2.5 sm:grid-cols-[auto,1fr] sm:gap-x-5">
+            <dl className="grid gap-2.5 sm:grid-cols-[auto_1fr] sm:gap-x-5">
               <dt className={label}>{t("emailInfo.from")}</dt>
               <dd className={value}>{[result.from_name, result.from].filter(Boolean).join(" · ") || t("common.unknown")}</dd>
               <dt className={label}>{t("emailInfo.replyTo")}</dt>

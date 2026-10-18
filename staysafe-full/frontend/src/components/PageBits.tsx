@@ -5,7 +5,7 @@ import { goToTool, isToolId, TOOL_LABEL, type ToolId } from "@/wrongTool";
 
 export function PageHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
-    <div className="light-pass relative mb-5 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 to-cream-50 p-5 shadow-warm-sm ring-1 ring-brand-100 animate-fade-up sm:p-6">
+    <div className="light-pass relative mb-5 overflow-hidden rounded-3xl bg-linear-to-br from-brand-50 to-cream-50 p-5 shadow-warm-sm ring-1 ring-brand-100 animate-fade-up sm:p-6">
       <span className="header-blob pointer-events-none absolute -right-10 -top-12 h-36 w-36 rounded-full bg-brand-200/40" />
       <div className="relative">
         <h1 className="font-heading text-2xl font-bold leading-tight text-ink-900 sm:text-3xl">{title}</h1>

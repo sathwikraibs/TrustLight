@@ -27,7 +27,7 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-0.5 border-b border-cream-200/80 py-2 last:border-0 sm:flex-row sm:items-baseline sm:gap-4">
       <dt className="shrink-0 font-body text-xs font-bold uppercase tracking-wide text-dustyblue-600 sm:w-40">{label}</dt>
-      <dd className="min-w-0 break-words font-body text-sm text-ink-800">{children}</dd>
+      <dd className="min-w-0 wrap-break-word font-body text-sm text-ink-800">{children}</dd>
     </div>
   );
 }
@@ -60,8 +60,8 @@ function Timeline({ created, expires }: { created?: string; expires?: string }) 
   return (
     <div className="py-3">
       <div className="relative h-2.5 rounded-full bg-cream-200">
-        <div className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-dustyblue-300 to-sage-400 grow-x" style={{ width: `${pct}%` }} />
-        <span className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-cream-50 bg-sage-600 shadow" style={{ left: `${pct}%` }} />
+        <div className="absolute inset-y-0 left-0 rounded-full bg-linear-to-r from-dustyblue-300 to-sage-400 grow-x" style={{ width: `${pct}%` }} />
+        <span className="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-cream-50 bg-sage-600 shadow-sm" style={{ left: `${pct}%` }} />
       </div>
       <div className="mt-2 flex justify-between gap-2 font-body text-[11px] text-dustyblue-600">
         <span>{t("siteInfo.tlCreated")}<br /><b className="text-ink-800">{formatDate(created)}</b></span>

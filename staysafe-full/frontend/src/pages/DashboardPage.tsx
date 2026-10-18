@@ -26,7 +26,7 @@ export function DashboardPage({ onNavigate }: { onNavigate: (path: string) => vo
     return (
       <div>
         <ToolHeader path="/dashboard" title={t("dashboard.title")} subtitle={t("dashboard.subtitleEmpty")} />
-        <div className="rounded-2xl bg-gradient-to-br from-brand-100 to-cream-100 p-8 text-center shadow-warm">
+        <div className="rounded-2xl bg-linear-to-br from-brand-100 to-cream-100 p-8 text-center shadow-warm">
           <IconHistory className="mx-auto mb-3 h-10 w-10 text-dustyblue-400" />
           <p className="mb-5 font-body text-base text-ink-700/80">
             {t("dashboard.empty")}

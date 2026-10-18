@@ -36,7 +36,7 @@ export function FloatingHelpButton({ onNavigate, currentPath }: { onNavigate: (p
 export function ChatCard({ title, compact = false }: { title?: string; compact?: boolean }) {
   const { t, lang } = useI18n();
   return (
-    <div className={`overflow-hidden rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 text-cream-50 shadow-warm-lg ${compact ? "p-5" : "p-6 sm:p-7"}`}>
+    <div className={`overflow-hidden rounded-2xl bg-linear-to-br from-brand-400 to-brand-600 text-cream-50 shadow-warm-lg ${compact ? "p-5" : "p-6 sm:p-7"}`}>
       <div className="flex items-start gap-4">
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-cream-50/20">
           <IconChat className="h-7 w-7" />

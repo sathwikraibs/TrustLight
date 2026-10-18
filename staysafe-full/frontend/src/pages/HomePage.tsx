@@ -18,7 +18,7 @@ export function HomePage({ onNavigate }: { onNavigate: (path: string) => void })
   return (
     <div>
       {/* Welcome: the lighthouse on a night sea, its light sweeping slowly */}
-      <div className="relative mb-4 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 via-brand-800 to-brand-600 p-5 text-white shadow-warm-lg animate-fade-up sm:p-8">
+      <div className="relative mb-4 overflow-hidden rounded-3xl bg-linear-to-br from-brand-900 via-brand-800 to-brand-600 p-5 text-white shadow-warm-lg animate-fade-up sm:p-8">
         <span className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand-400/25 blur-3xl" />
         <span className="pointer-events-none absolute -bottom-24 -left-10 h-56 w-56 rounded-full bg-beam-400/10 blur-3xl" />
         <div className="relative grid grid-cols-[1fr_auto] items-center gap-x-3 sm:gap-x-8">

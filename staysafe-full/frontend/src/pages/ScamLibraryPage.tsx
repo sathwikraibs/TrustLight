@@ -190,7 +190,7 @@ export function ScamLibraryPage({ onNavigate }: { onNavigate?: (path: string) =>
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t("library.search")}
-          className="w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-12 py-3.5 font-body text-base text-ink-800 outline-none transition-colors focus:border-brand-400"
+          className="w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-12 py-3.5 font-body text-base text-ink-800 outline-hidden transition-colors focus:border-brand-400"
         />
       </div>
 

@@ -126,7 +126,7 @@ export function ImageCropper({ file, onDone, onCancel }: {
   // Shown on top of everything (outside the page, so page animations and the phone menu can't cover it)
   return createPortal(
     <div role="dialog" aria-modal="true" aria-label={t("crop.title")}
-      className="fixed inset-0 z-[80] flex flex-col bg-ink-900">
+      className="fixed inset-0 z-80 flex flex-col bg-ink-900">
       <div className="flex shrink-0 items-center justify-between gap-3 px-4 py-3 text-cream-50">
         <div className="min-w-0">
           <p className="font-heading text-base font-bold">{t("crop.title")}</p>

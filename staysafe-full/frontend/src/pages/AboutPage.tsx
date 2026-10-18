@@ -92,7 +92,7 @@ export function AboutPage({ onNavigate }: { onNavigate: (path: string) => void }
           {independentChecks(typeof window !== "undefined" ? window.location.hostname : "").map(({ key, url }) => (
             <li key={key}>
               <a href={url} target="_blank" rel="noopener noreferrer"
-                className="group flex items-center gap-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 rounded-lg">
+                className="group flex items-center gap-3 py-3 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-400 rounded-lg">
                 <span className="min-w-0 flex-1">
                   <span className="block font-body text-sm font-semibold text-ink-900 group-hover:text-brand-700">{t(`about.verified.${key}.name`)}</span>
                   <span className="block font-body text-xs text-dustyblue-600">{t(`about.verified.${key}.desc`)}</span>

@@ -80,7 +80,7 @@ export function ScanFilePage({ onNavigate }: { onNavigate?: (path: string) => vo
           incoming={incoming}
         />
         <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-xl bg-cream-100 p-3">
-          <input type="checkbox" checked={fullScan} onChange={(e) => setFullScan(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-[#3730A3]" />
+          <input type="checkbox" checked={fullScan} onChange={(e) => setFullScan(e.target.checked)} className="mt-1 h-4 w-4 shrink-0 accent-brand-600" />
           <span className="font-body text-sm text-ink-800">
             <b>{t("vt.uploadTitle")}</b>
             <span className="mt-0.5 block text-xs text-dustyblue-600">{t("vt.uploadNote")}</span>
@@ -126,7 +126,7 @@ export function ScanFilePage({ onNavigate }: { onNavigate?: (path: string) => vo
             </Section>
           )}
           <Section icon={<IconFile className="h-5 w-5" />} title={t("file.details")} summary={typeof result.size === "number" ? formatSize(result.size) : undefined}>
-            <dl className="grid gap-2.5 sm:grid-cols-[auto,1fr] sm:gap-x-5">
+            <dl className="grid gap-2.5 sm:grid-cols-[auto_1fr] sm:gap-x-5">
               <dt className={label}>{t("fileInfo.name")}</dt>
               <dd className={`${value} break-all`}>{result.filename}</dd>
               {result.detected_type && result.detected_type !== "unknown" && (
