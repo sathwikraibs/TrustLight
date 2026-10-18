@@ -3,7 +3,7 @@ import { useI18n } from "@/i18n";
 import { apiGet } from "@/api";
 import { API_BASE } from "@/config";
 import { isPhoneOrTablet } from "@/share";
-import { BrandMark, IconCheck } from "@/icons";
+import { BrandMark, IconCheck, IconChevronRight } from "@/icons";
 
 /**
  * "Support TrustLight": an optional contribution, shown only when a payment page or UPI ID is set on
@@ -19,10 +19,12 @@ function loadSupport(): Promise<SupportInfo | null> {
   return cached;
 }
 
-export function SupportCard() {
+/** `collapsible`: shown as one "Support TrustLight  >" row (Settings); tapping it opens all the details. */
+export function SupportCard({ collapsible = false }: { collapsible?: boolean }) {
   const { t, tl } = useI18n();
   const [info, setInfo] = useState<SupportInfo | null>(null);
   const [copied, setCopied] = useState(false);
+  const [open, setOpen] = useState(!collapsible);
   useEffect(() => { let on = true; void loadSupport().then((i) => { if (on) setInfo(i); }); return () => { on = false; }; }, []);
   if (!info?.available) return null;
 
@@ -32,8 +34,25 @@ export function SupportCard() {
     try { await navigator.clipboard.writeText(info!.upi); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* ignore */ }
   }
 
+  if (!open) {
+    return (
+      <button type="button" id="support" onClick={() => setOpen(true)} aria-expanded={false}
+        className="btn-press card-hover flex w-full items-center gap-3 rounded-2xl bg-cream-50 p-5 text-left shadow-warm">
+        <BrandMark className="h-6 w-6 shrink-0 rounded-lg" />
+        <span className="flex-1 font-body text-base font-semibold text-ink-800">{t("support.title")}</span>
+        <IconChevronRight className="h-5 w-5 text-dustyblue-400" />
+      </button>
+    );
+  }
+
   return (
     <section id="support" className="rounded-3xl border border-cream-200 bg-cream-50 p-5 shadow-warm-sm sm:p-6">
+      {collapsible && (
+        <button type="button" onClick={() => setOpen(false)} aria-expanded={true} aria-label={t("common.close")}
+          className="float-right -mr-1 -mt-1 rounded-lg p-1 text-dustyblue-400 hover:bg-cream-100">
+          <IconChevronRight className="h-5 w-5 -rotate-90" />
+        </button>
+      )}
       <div className="flex items-start gap-3">
         <BrandMark className="h-10 w-10 shrink-0 rounded-xl" />
         <div className="min-w-0">

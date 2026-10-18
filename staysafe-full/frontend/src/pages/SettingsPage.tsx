@@ -69,7 +69,6 @@ export function SettingsPage({ onNavigate }: { onNavigate: (path: string) => voi
 
       {/* Rating and feedback */}
       <FeedbackCard from="settings" />
-      <SupportCard />
 
       <InstallCard place="settings" />
 
@@ -92,6 +91,9 @@ export function SettingsPage({ onNavigate }: { onNavigate: (path: string) => voi
         {upd === "latest" && <p className="mt-3 font-body text-sm text-ink-800" role="status">{t("settings.latest")}</p>}
         {upd === "offline" && <p className="mt-3 font-body text-sm text-rust-600" role="status">{t("settings.offline")}</p>}
       </Card>
+
+      {/* Support TrustLight: one row, opens to the full details */}
+      <SupportCard collapsible />
 
       {/* Data */}
       <Card className="p-5 sm:p-6">
