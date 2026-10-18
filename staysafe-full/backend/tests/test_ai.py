@@ -228,6 +228,17 @@ def test_people_asked_for_nude_photos_or_threatened_are_helped_not_turned_away()
     d = c.post("/api/assistant", json={"message": "who won the cricket match yesterday", "lang": "en"}).get_json()
     assert d["reply"] == assistant.OFF_TOPIC["en"] and len(sent) == 1, (d, sent)
 
+
+def test_victims_are_never_told_to_delete_the_chat():
+    for bad, good in (("screenshot dett deele, chat delete malpule.", "chat delete malpodchi"),
+                      ("ಚಾಟ್‌ನ್ ಡಿಲೀಟ್ ಮಲ್ಪುಲೆ.", "ಡಿಲೀಟ್ ಮಲ್ಪೊಡ್ಚಿ"),
+                      ("chat delete maadi", "chat delete maadbedi"),
+                      ("chat delete kar dijiye", "chat delete mat kijiye"),
+                      ("चैट डिलीट कर दें", "चैट डिलीट न करें")):
+        assert good in assistant.keep_the_chat(bad), bad
+    for fine in ("Uninstall the app.", "message delete malpodchi", "Keep the chat as proof."):
+        assert assistant.keep_the_chat(fine) == fine
+
 def test_small_talk_is_answered_normally():
     fresh(GROQ_API_KEY="k")
     use(lambda url, **kw: openai_ok('{"kind": "smalltalk", "reply": "Hi! I am TrustLight\'s AI assistant, an automatic helper."}'))

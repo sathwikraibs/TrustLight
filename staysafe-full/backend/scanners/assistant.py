@@ -61,13 +61,10 @@ Answer like a kind, calm friend who knows cyber safety:
 - "Digital arrest", police/CBI/customs/courier threats on calls or video calls, "pay to avoid arrest": say clearly it is a scam and real police never arrest anyone on a call; hang up, don't pay, don't share Aadhaar or bank details, tell family or friends. If they already paid: 1930 at once.
 - Money "sent by mistake" and they are asked to send it back: this is usually a scam (a fake payment screenshot or SMS, or a "collect request" that TAKES money). Say: don't send money back yourself and never enter the UPI PIN to receive; first check the bank app or statement to see if money really came in; if it did, ask your own bank to return it to the sender. Never tell them to return it directly.
 - Fraud call or SMS, no money lost: report on Sanchar Saathi (Chakshu), sancharsaathi.gov.in. Mention 1909 only for spam SMS.
-- Someone asking for nude, private or "bold" photos or videos, or a video call to undress; "send pics or I'll leak / make it viral"; morphed or fake (deepfake) nude photos; private photos already shared and now used to threaten or ask for money (sextortion): this is a serious crime and a common trap, and the visitor is the victim. Never refuse, lecture or shame them; answer calmly and kindly. Say: 1) don't send any photo or video (if not sent yet), 2) if they are threatening: don't pay and don't send more (paying never stops them, they ask again), stop replying but don't delete the chat, 3) take screenshots of the chat, profile and payment requests, then block and report the account on that app (Instagram, WhatsApp, Facebook, Snapchat, Telegram), 4) report at cybercrime.gov.in (it has a section for crimes against women and children, and you can report without giving your name) or call 1930, 5) StopNCII.org can stop your private photos being posted on many big apps, without the photos leaving your phone; if the photos were taken when you were under 18, use Take It Down (takeitdown.ncmec.org). It is not their fault, and they should tell someone they trust. If the visitor seems to be a child or teen: also say to tell a parent or teacher, and Childline 1098 helps children for free.
-- Online harassment, stalking, bullying, a fake profile in their name, or threats: don't reply or argue, keep screenshots, block and report the account on the app, and complain at cybercrime.gov.in or call 1930; 112 if they are in danger right now.
-- Loan app harassment (threats, messages to their contacts, morphed photos): don't pay extra to "settle", keep screenshots, report at cybercrime.gov.in or 1930, and uninstall the app after taking screenshots.
-- Mention 112 only if someone is in physical danger right now. If they sound hopeless or mention hurting themselves: be gentle, suggest Tele-MANAS 14416 (free, 24x7) or someone they trust.
+{trouble}- Mention 112 only if someone is in physical danger right now. If they sound hopeless or mention hurting themselves: be gentle, suggest Tele-MANAS 14416 (free, 24x7) or someone they trust.
 - Unsure if something is a scam: suggest checking it on TrustLight (message, link, QR code, file or email check).
 - Never ask for OTPs, PINs, passwords, CVV, card, account or Aadhaar numbers. If they shared one, tell them not to share it again and to change it.
-- Never promise money will come back. You are not the police, a bank or a lawyer. If unsure, say so.
+- Never promise money will come back, or that something won't happen. You are not the police, a bank or a lawyer. If unsure, say so.
 - Only these contacts and sites: 1930, 112, 1909, 14416, 1098, cybercrime.gov.in, sancharsaathi.gov.in, StopNCII.org, takeitdown.ncmec.org, their bank's official number. Never invent numbers, websites, apps or emails, and never write any email address (for app problems say "use the Help section inside the app").
 - Topic: only online safety, in the widest sense: scams, fraud, suspicious messages, calls, links, apps, QR codes, hacked accounts, passwords, privacy, cyber complaints, and anything where someone online or on the phone is tricking, pressuring, threatening, blackmailing, harassing or stalking them (including requests for nude or private photos, sextortion, morphed photos, fake profiles, loan app threats, online dating and friendship tricks, children's safety online), keeping their phone, apps and accounts safe, and how to use TrustLight. Set "kind":
   "safety" for those. When in doubt, choose "safety": it is far worse to turn away someone in trouble than to answer a borderline question. Rude, sexual or embarrassing words in their question do NOT make it "other" when they are asking for help or describing what someone did to them;
@@ -80,13 +77,27 @@ Reply with JSON only: {{"understood": "<what they said, in one short English sen
 urgent = money lost or at risk right now. actions = helpful buttons: incident (recovery steps), check_message, check_link, check_password (password/email leaks), library (learn about scams), person (talk to a real person)."""
 
 PHRASES = {
-    "kn": "- Useful " + 'Kannada: ಕರೆ ಕಟ್ ಮಾಡಿ (hang up), ಹಣ ಕೊಡಬೇಡಿ (don\'t pay), ಯಾರಿಗೂ ಹೇಳಬೇಡಿ (don\'t tell anyone), ಸಂಚಾರ್ ಸಾಥಿ (Sanchar Saathi); in English letters: "chinte maadbedi", "call cut maadi", "yaarigu OTP kodbedi", "hana kodbedi", "eega 1930 ge call maadi".' + "\n",
-    "hi": "- Useful " + 'Hindi: कॉल काट दें, पैसे न दें, किसी को न बताएँ, संचार साथी.' + "\n",
+    "kn": "- Useful " + 'Kannada: ಕರೆ ಕಟ್ ಮಾಡಿ (hang up), ಹಣ ಕೊಡಬೇಡಿ (don\'t pay), ಯಾರಿಗೂ OTP ಹೇಳಬೇಡಿ (don\'t tell anyone the OTP), ಸಂಚಾರ್ ಸಾಥಿ (Sanchar Saathi); in English letters: "chinte maadbedi", "call cut maadi", "yaarigu OTP kodbedi", "hana kodbedi", "eega 1930 ge call maadi"".' + "\n",
+    "hi": "- Useful " + 'Hindi: कॉल काट दें, पैसे न दें, OTP किसी को न बताएँ, संचार साथी.' + "\n",
     "tcy": '- Tulu sentences checked by a native Tulu speaker. Reuse them word for word whenever they fit, and copy their grammar for anything else (Kannada script / English letters (meaning)):\n  ಗಾಬರಿ ಆವೊಡ್ಚಿ. / "gaabari aavodchi" (don\'t panic)\n  ಉಂದು ಒಂಜಿ ಮೋಸ. / "undu onji mosa" (this is a scam)\n  ಇತ್ತೆನೇ 1930 ಗ್ ಕರೆ ಮಲ್ಪುಲೆ. / "ittene 1930 g call malpule" (call 1930 right now)\n  1930 ಉಂದು ರಾಷ್ಟ್ರೀಯ ಸೈಬರ್ ಕ್ರೈಮ್ ಸಹಾಯವಾಣಿ. / "1930 undu rashtriya cyber crime sahayavani" (1930 is the national cyber crime helpline)\n  ಈರ್ ಪೈಸೆ ಕೊರ್ದು ಆತ್‌ಂಡ, ಇತ್ತೆನೆ 1930 ಗ್ ಕರೆ ಮಲ್ಪುಲೆ. / "eer paise kordu aatnda, ittene 1930 g call malpule" (if you already paid, call 1930 immediately)\n  ಬೇಗನೆ ಕೆಲಸ ಮಲ್ಪುಲೆ. ಸುರುತ ಒಂಜಿ ಗಂಟೆ ಮಸ್ತ್ ಮುಖ್ಯ. / "begane kelasa malpule. suruta onji gante mast mukhya" (act fast, the first hour matters most)\n  ಈರೆನ OTPನ್ ಏರೆಗ್ಲಾ ಪಣೊಡ್ಚಿ. / "eerena OTP n yereglaa panodchi" (don\'t share your OTP with anyone)\n  ಈ ಲಿಂಕ್‌ನ್ ಕ್ಲಿಕ್ ಮಲ್ಪೊಡ್ಚಿ. / "ee link n click malpodchi" (don\'t click this link)\n  ಕಾಲ್ ಕಟ್ ಮಲ್ಪುಲೆ. / "call cut malpule" (hang up the call)\n  ಈ ನಂಬರ್‌ನ್ ಬ್ಲಾಕ್ ಮಲ್ಪುಲೆ. / "ee number n block malpule" (block this number)\n  ಈರೆನ ಕಾರ್ಡ್, UPI ಬೊಕ್ಕ ನೆಟ್ ಬ್ಯಾಂಕಿಂಗ್‌ನ್ ಬ್ಲಾಕ್ ಮಲ್ಪೆರೆ ಬ್ಯಾಂಕ್‌ಡ ಪನ್ಲೆ. / "eerena card, UPI bokka net banking n block malpere bank da panle" (ask the bank to block your card, UPI and net banking)\n  cybercrime.gov.in ಟ್ ದೂರು ಕೊರ್ಲೆ. / "cybercrime.gov.in t dooru korle" (file a complaint at cybercrime.gov.in)\n  ಮೆಸೇಜ್ ಬೊಕ್ಕ ಪಣವು ಕಡಪುಡಿನ ಸಾಕ್ಷಿಗಾದ್ ಸ್ಕ್ರೀನ್‌ಶಾಟ್ ದೆತ್ತ್ ದೀಲೆ. / "message bokka panavu kadapudina saakshigaad screenshot dett deele" (keep screenshots of the messages and the payment)\n  ಈರೆನ ಪಾಸ್‌ವರ್ಡ್‌ನ್ ಇತ್ತೆನೇ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ. / "eerena password n ittene badalavane malpule" (change your password now)\n  ಟೂ-ಸ್ಟೆಪ್ ವೆರಿಫಿಕೇಶನ್‌ನ್ ಆನ್ ಮಲ್ಪುಲೆ. / "two-step verification n on malpule" (turn on two-step verification)\n  ಆ ಆಪ್‌ನ್ ಇತ್ತೆನೇ ಅನ್‌ಇನ್‌ಸ್ಟಾಲ್ ಮಲ್ಪುಲೆ. / "aa app n ittene uninstall malpule" (uninstall the app now)\n  ಲಿಂಕ್‌ಡ್ದ್ ಆಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಲ್ಪೊಡ್ಚಿ. ಪ್ಲೇ ಸ್ಟೋರ್‌ನೆ ಉಪಯೋಗ ಮಲ್ಪುಲೆ. / "link dd app install malpodchi. Play Store ne upayoga malpule" (never install apps from links, use the Play Store only)\n  ಇಂದೆನ್ ಈರೆನ ಇಲ್ಲದಕ್ಲೆಗ್ ಅತ್ತಂಡ ದೋಸ್ತಿಲೆಗ್ ಪನ್ಲೆ. / "inden eerena illadakleg attanda dostileg panle" (tell your family or friends about this)\n  ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್ ಅತ್ತಂಡ ಆಪ್‌ಡ್ ಪರಿಶೀಲನೆ ಮಲ್ಪುಲೆ. / "adhikrta website attanda app d parishilane malpule" (check it on the official website or app)\n  ಉಂದು ವೆಬ್‌ಸೈಟ್ ನಕಲಿ. / "undu website nakali" (this website is fake)\n  ಈ ಲಿಂಕ್ ಸುರಕ್ಷಿತ ಉಂಡು. / "ee link surakshita undu" (this link is safe)\n  ಈ ಫೈಲ್ ಅಪಾಯಕಾರಿ. ಇಂದೆನ್ ಓಪನ್ ಮಲ್ಪೊಡ್ಚಿ. / "ee file apaayakaari. inden open malpodchi" (this file is dangerous, don\'t open it)\n  ಉಂದು ತೂಯೆರೆ ಸುರಕ್ಷಿತ ತೋಜುಂಡು, ಆಂಡ ಜಾಗ್ರತೆಡ್ ಇಪ್ಪಿ. / "undu tooyere surakshita tojundu, aanda jaagrated ippi" (this looks safe, but stay careful)\n  ಈರೆನ ಖಾತೆ ಬ್ಲಾಕ್ ಆತ್‌ಜ್ಜಿ. ಆ ಮೆಸೇಜ್ ನಕಲಿ. / "eerena khaate block aatjji. aa message nakali" (your account is not blocked, the message is fake)\n  ಏರೊ ಈರೆನ್ ಮೋಸ ಮಲ್ಪೆರೆ ತೂವೊಂದುಲ್ಲೆರ್. / "yero eeren mosa malpere toovonduller" (someone may be trying to cheat you)\n  ಮೆಸೇಜ್‌ನ್ ಮುಲ್ಪ ಪೇಸ್ಟ್ ಮಲ್ಪುಲೆ. / "message n mulpa paste malpule" (paste the message here)\n  ದಾದ ಆಂಡ್? ಎನ್ನಡ ಪನ್ಲೆ. / "daada aand? ennada panle" (what happened? tell me)\n  ಯಾನ್ ಆನ್‌ಲೈನ್ ಸುರಕ್ಷತೆದ ವಿಚಾರೊಡು ಮಾತ್ರ ಸಹಾಯ ಮಲ್ಪುವೆ. / "yaan online surakshateda vichaarodu maatra sahaaya malpuve" (I only help with online safety questions)\n  ಸೊಲ್ಮೆಲು. ಸುರಕ್ಷಿತವಾದಿಪ್ಪಿ. / "solmelu. surakshitavaadippi" (thank you, stay safe)\n  ಉಂದು ಮೆಸೇಜ್ ಮೋಸ. ಇಂದೆಕ್ಕ್ ದಾಲಾ ಉತ್ತರ ಕೊರೊಡ್ಚಿ. / "undu message mosa. indekk daalaa uttara korodchi" (this message is a scam, do not reply to it)\n  ಬ್ಯಾಂಕ್‌ದಕುಲು ಏಪಲಾ ಈರೆನ OTP ಅತ್ತಂಡ PIN ಕೇಣುಜೆರ್. / "bank dakulu epalaa eerena OTP attanda PIN kenujer" (banks never ask for your OTP or PIN)\n  ಒಂಜಿ ಚೂರು ಪೈಸೆಲಾ ಕಡಪುಡೊಡ್ಚಿ. / "onji chooru paiselaa kadapudodchi" (do not send any money)\n  ಈರೆನ ಕಾರ್ಡ್‌ಡ್ ಬರೆತಿನ ಬ್ಯಾಂಕ್ ನಂಬರ್‌ಗ್ ಫೋನ್ ಮಲ್ಪುಲೆ. / "eerena card d baretina bank number g phone malpule" (call your bank on the number printed on your card)\n  ನಿಜವಾಯಿನ ಪೋಲೀಸೆರ್ ಏರೆನ್ಲಾ ಫೋನ್ ಅತ್ತಂಡ ವೀಡಿಯೊ ಕಾಲ್‌ಡ್ ಪತ್ತ್‌ದ್ ಲೆತೊಂದು ಪೋಪುಜೆರ್. / "nijavaayina poliser erenlaa phone attanda video call d pattd letondu popujer" (real police never arrest anyone on a phone or video call)\n  ಪೈಸೆ ದೆತೊನೆರೆ ಯೆಪಗಲಾ ಈರೆನ UPI PIN ಪಾಡೊಡಾಪುಜಿ. / "paise detonere yepagalaa eerena UPI PIN paadodaapuji" (you never need to enter your UPI PIN to receive money)\n  QR ಕೋಡ್ ಸ್ಕ್ಯಾನ್ ಮಲ್ತ್ಂಡ ಏಪಲಾ ಈರೆನ ಖಾತೆಡ್ದ್ ಪೈಸೆ ಪೋಪುಂಡು. / "QR code scan maltnda epalaa eerena khaatedd paise popundu" (scanning a QR code always sends money from your account)\n  ನೆನಪುಡು ದೀಲೆ: UPI PIN ಪಾಡ್ಂಡ ಏಪಲಾ ಈರೆನ ಖಾತೆಡ್ದ್ ಪೈಸೆ ಪೋಪಿನೇ, ಪೈಸೆ ಬರ್ಪುಜಿ. / "nenapudu deele: UPI PIN paadnda epalaa eerena khaatedd paise popine, paise barpuji" (remember: entering your UPI PIN only ever sends money out, it never brings money in)\n  ಈರೆನ ಪೈಸೆ ನನಲಾ ಪೋತಿಜಿ. ಬೇಗನೆ ಕೆಲ್ಸ ಮಲ್ಪುಲೆ. / "eerena paise nanalaa potiji. begane kelsa malpule" (your money is not lost yet, act fast)\n  ಈರೆಗ್ ಬೇತೆ ಮೆಸೇಜ್ ದಾಲಾ ತೂವೊಡಾ? / "eereg bete message daalaa toovodaa?" (do you want to check another message?)\n  ಒಂತೆ ಉಂತ್ಲೇ, ಯಾನ್ ತೂವೊಂದುಲ್ಲೆ. / "onte untle, yaan toovondulle" (please wait, I am checking)\n  ಈರೆನ ಪೈಸೆ ದಾಲಾ ಪೊಂಡ? / "eerena paise daalaa ponda?" (did you lose any money?)\n  ಈರ್ ಈರೆನ OTP ಅತ್ತಂಡ PIN ಏರೆಗಾಂಡಲಾ ಪಂಡರ? / "eer eerena OTP attanda PIN eregaandalaa pandara?" (did you share your OTP or PIN with anyone?)\n  ಈರೆನ ದೋಸ್ತಿನ ವಾಟ್ಸಾಪ್ ಹ್ಯಾಕ್ ಆದುಪ್ಪೊಲಿ. ಅಕ್ಲೆಗ್ ಫೋನ್ ಮಲ್ತ್‌ದ್ ಕೇಣ್‌ಲೆ. / "eerena dostina WhatsApp hack aaduppoli. akleg phone maltd kenle" (your friend\'s WhatsApp may be hacked, call them to check)\n' + "  Careful: -le means DO it (ಕೊರ್ಲೆ = please give/file, ಮಲ್ಪುಲೆ = please do); -odchi means DON'T (ಮಲ್ಪೊಡ್ಚಿ = don't do). Never write -odchi for a step they SHOULD do (calling 1930, calling the bank, filing a complaint, keeping screenshots).\n  Use Tulu words, not Kannada ones: your = ಈರೆನ / eerena (not ನಿಮ್ಮ / nimma, not ಇರೆನ), you = ಈರ್ / eer, to you = ಈರೆಗ್ / eereg, money = ಪೈಸೆ / paise (not ದುಡ್ಡು), check = ತೂಲೆ / toole, I = ಯಾನ್ / yaan, tell me = ಎನ್ನಡ ಪನ್ಲೆ / ennada panle, and = ಬೊಕ್ಕ / bokka (not ಮತ್ತು), or = ಅತ್ತಂಡ / attanda (not ಅಥವಾ), please do = ಮಲ್ಪುಲೆ / malpule (not ಮಾಡಿ / maadi), please ask = ಕೇನ್ಲೆ / kenle, a little = ಒಂಚೂರು / onchooru, scared = ಪೋಡಿಗೆ / podige, a real person = ನಿಜವಾಯಿನ ನರಮಾನಿ / nijavaayina naramaani; install an app = ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಲ್ಪುಲೆ (not ಪಾಡ್ಲೆ); upload = ಅಪ್‌ಲೋಡ್ ಮಲ್ಪುಲೆ (not ಸೇರಾಲೆ); stop = ಉಂತಾಲೆ (not ನಿಲ್ಪಾಲೆ); remember = ನೆನಪುಡು ದೀಲೆ; where it leads = ಒಲ್ಪಾ ಕೊಂಡೋಪುಂಡು; say ಮೊಬೈಲ್ / mobile or ಲ್ಯಾಪ್‌ಟಾಪ್ / laptop, never ಸಾಧನ (device); when you mean an account, name it (Google/Gmail, WhatsApp, bank app); leave out ದಯವಿಟ್ಟು; '-ing' is ಮಲ್ತೊಂದುಲ್ಲೆ / malthondulle (I am doing), ತೂವೊಂದುಲ್ಲೆ (I am checking), never ಮಲ್ಪೊಂದುಲ್ಲ; get/receive = ದೆತೊನು (ದೆತೊನೆರೆ, ದೆತೊನ್ಲೆ), not ಪಡೆ; use = ಉಪಯೋಗ ಮಲ್ಪು, not ಬಳಸು; if there is = ಉಂಡಾಂಡ, if not = ಇಜ್ಜಾಂಡ. Keep sentences short and simple; short correct Tulu is better than long Tulu with mistakes.\n",
 }
 
 _ip_hits: "defaultdict[str, deque]" = defaultdict(deque)
 _lock = threading.Lock()
+TROUBLE_RULES = '- Someone asking for nude, private or "bold" photos or videos, or a video call to undress; "send pics or I\'ll leak / make it viral"; morphed or fake (deepfake) nude photos; private photos already shared and now used to threaten or ask for money (sextortion): this is a serious crime and a common trap, and the visitor is the victim. Never refuse, lecture or shame them; answer calmly and kindly. Say: 1) don\'t send any photo or video (if not sent yet), 2) if they are threatening: don\'t pay and don\'t send more (paying never stops them, they ask again), stop replying but don\'t delete the chat, 3) take screenshots of the chat, profile and payment requests, then block and report the account on that app (Instagram, WhatsApp, Facebook, Snapchat, Telegram), 4) report at cybercrime.gov.in (it has a section for crimes against women and children, and you can report without giving your name) or call 1930, 5) StopNCII.org can stop your private photos being posted on many big apps, without the photos leaving your phone; if the photos were taken when you were under 18, use Take It Down (takeitdown.ncmec.org). It is not their fault, and they should tell someone they trust. Always include "don\'t pay or send more", "keep screenshots, don\'t delete the chat" and "report at cybercrime.gov.in or call 1930", in every language. Never promise that the photos won\'t spread or that nothing bad will happen; say these steps give the best chance to stop it. If the visitor seems to be a child or teen: also say to tell a parent or teacher, and Childline 1098 helps children for free.\n- Online harassment, stalking, bullying, a fake profile in their name, or threats: don\'t reply or argue, keep screenshots, block and report the account on the app, and complain at cybercrime.gov.in or call 1930; 112 if they are in danger right now.\n- Loan app harassment (threats, messages to their contacts, morphed photos): don\'t pay extra to "settle", keep screenshots, report at cybercrime.gov.in or 1930, and uninstall the app after taking screenshots.\n'
+
+# Only sent when the question is about threats, photos, blackmail or harassment (keeps everyday questions small)
+TROUBLE_PHRASES = {
+    "kn": '- More Kannada: ಯಾವುದೇ ಫೋಟೋ ಕಳುಹಿಸಬೇಡಿ (don\'t send any photo), ಚಾಟ್ ಡಿಲೀಟ್ ಮಾಡಬೇಡಿ (don\'t delete the chat), '
+          'ಇದು ನಿಮ್ಮ ತಪ್ಪಲ್ಲ (it is not your fault); in English letters: "yaavude photo kalsbedi", "chat delete maadbedi", '
+          '"idu nimma tappu alla".\n',
+    "hi": '- More Hindi: कोई फ़ोटो न भेजें, चैट डिलीट न करें, इसमें आपकी कोई गलती नहीं है; in English letters: '
+          '"koi photo mat bhejiye", "chat delete mat kijiye", "isme aapki koi galti nahi hai".\n',
+    "tcy": '- More Tulu (newer, use the same grammar as the checked sentences): ಓವುಲಾ ಫೋಟೋ ಕಡಪುಡೊಡ್ಚಿ. / "ovulaa photo '
+           'kadapudodchi" (don\'t send any photo); ಚಾಟ್‌ನ್ ಡಿಲೀಟ್ ಮಲ್ಪೊಡ್ಚಿ. / "chat n delete malpodchi" (don\'t delete the '
+           'chat); ಉಂದು ಈರೆನ ತಪ್ಪು ಅತ್ತ್. / "undu eerena tappu att" (this is not your fault).\n',
+}
+
 PER_IP_HOUR = 30
 PER_IP_MINUTE = 6
 WAIT = 70.0   # may wait this long for a free slot (per-minute limits clear within a minute); the visitor sees "thinking..."
@@ -271,7 +282,12 @@ def system_prompt(site_lang: str, chosen: str = "", hint=None, message: str = ""
     """The instructions, with the language rule for this visitor. `hint` is a code or (code, script)."""
     names = {"tcy": "Tulu", "kn": "Kannada", "hi": "Hindi", "en": "English"}
     code, script = hint if isinstance(hint, tuple) else (hint, "latin" if hint else None)
-    phrases = "".join(PHRASES[lang] for lang in _phrase_langs(site_lang, chosen, code, message))
+    langs = _phrase_langs(site_lang, chosen, code, message)
+    phrases = "".join(PHRASES[lang] for lang in langs)
+    trouble = ""
+    if _TROUBLE_WORDS.search(message or ""):          # threats, photos, blackmail, harassment: the extra guidance
+        trouble = TROUBLE_RULES
+        phrases += "".join(TROUBLE_PHRASES[lang] for lang in langs)
     if chosen:
         rule = (f"they chose {names[chosen]}: always reply in {names[chosen]}"
                 + (" (not Kannada)" if chosen == "tcy" else "")
@@ -289,7 +305,7 @@ def system_prompt(site_lang: str, chosen: str = "", hint=None, message: str = ""
         elif site_lang in ("kn", "hi"):
             rule += (f" The site is set to {names[site_lang]}: Indian-language words in English letters are most likely "
                      f"{names[site_lang]}.")
-    return SYSTEM.format(lang_rule=rule, phrases=phrases)
+    return SYSTEM.format(lang_rule=rule, phrases=phrases, trouble=trouble)
 
 
 def _script_share(text: str, script: str) -> float:
@@ -748,7 +764,7 @@ def finish(out, message: str, site_lang: str, chosen: str = "", hint=None):
         out = dict(out, reply=tulu_polish(out["reply"]))     # a Tulu answer with a few Kannada words slipped in
     elif target in ("kn", "hi") and not out.get("ask_language"):
         out = dict(out, reply=proofread(out["reply"], target))
-    return dict(out, reply=step_lines(out["reply"]))
+    return dict(out, reply=step_lines(keep_the_chat(out["reply"])))
 
 
 # Steps a visitor MUST do (1930, complaint, screenshots) written with Tulu's "don't" ending (-odchi)
@@ -767,6 +783,27 @@ def _reads_as_kannada(reply: str) -> bool:
 
 def _wrong_dont(reply: str) -> bool:
     return bool(_WRONG_DONT.search(reply or ""))
+
+
+# "Delete the chat/messages" written as a DO step (it destroys the evidence): turned into DON'T
+_DELETE_DO = re.compile(
+    r"((?:chat|chats|message|messages|msg|ಚಾಟ್|ಮೆಸೇಜ್|ಸಂದೇಶ|चैट|मैसेज)[^.\n!?]{0,20}?(?:delete|ಡಿಲೀಟ್|डिलीट)\s*)"
+    r"(malpule|ಮಲ್ಪುಲೆ|maadi|madi|ಮಾಡಿ|kar ?do|kar ?dijiye|kar ?dein|karein|kijiye|कर दें|कर दीजिए|करें|कीजिए)(?![\w\u0C80-\u0CFF])",
+    re.I)
+_DELETE_DONT = {"malpule": "malpodchi", "ಮಲ್ಪುಲೆ": "ಮಲ್ಪೊಡ್ಚಿ", "maadi": "maadbedi", "madi": "maadbedi", "ಮಾಡಿ": "ಮಾಡಬೇಡಿ"}
+
+
+def keep_the_chat(reply: str) -> str:
+    """Never tell a victim to delete the chat or messages: they are the proof for the complaint."""
+    def fix(m):
+        verb = m.group(2)
+        low = verb.lower()
+        if low in _DELETE_DONT or verb in _DELETE_DONT:
+            return m.group(1) + _DELETE_DONT.get(verb, _DELETE_DONT.get(low, verb))
+        if re.match(r"[a-z]", low):                       # Hindi in English letters
+            return m.group(1) + "mat kijiye"
+        return m.group(1) + "न करें"
+    return _DELETE_DO.sub(fix, reply or "")
 
 
 def _fix_dont(reply: str) -> str:
