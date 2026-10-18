@@ -1,6 +1,8 @@
 # Temporary helper for the build-tools upgrade (Vite 8, Tailwind 4). Deleted after the upgrade.
 name: Upgrade helper
-on: { workflow_dispatch: {} }
+on:
+  push:
+    branches: [build-upgrade]
 permissions:
   contents: write
 jobs:
