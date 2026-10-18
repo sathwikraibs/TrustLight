@@ -32,8 +32,8 @@ jobs:
         run: |
           mkdir -p /tmp/pw && (cd /tmp/pw && npm init -y >/dev/null && npm i --no-audit --no-fund playwright >/dev/null && npx playwright install --with-deps chromium >/dev/null)
           rm -rf ../../upgrade-shots
-          NODE_PATH=/tmp/pw/node_modules node scripts/shots.mjs /tmp/old ../../upgrade-shots/old
-          NODE_PATH=/tmp/pw/node_modules node scripts/shots.mjs dist ../../upgrade-shots/new intro
+          PW_DIR=/tmp/pw node scripts/shots.mjs /tmp/old ../../upgrade-shots/old
+          PW_DIR=/tmp/pw node scripts/shots.mjs dist ../../upgrade-shots/new intro
       - name: Save screenshots on this branch
         run: |
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"; git config user.name "github-actions[bot]"

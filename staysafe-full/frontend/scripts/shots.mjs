@@ -3,7 +3,8 @@
 import http from "node:http";
 import { readFileSync, existsSync, mkdirSync, statSync } from "node:fs";
 import { join, extname } from "node:path";
-import { chromium } from "playwright";
+import { createRequire } from "node:module";
+const { chromium } = createRequire(process.env.PW_DIR + "/")("playwright");
 const [dist, out, intro] = process.argv.slice(2);
 mkdirSync(out, { recursive: true });
 const types = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".json": "application/json", ".webmanifest": "application/manifest+json", ".ico": "image/x-icon" };
