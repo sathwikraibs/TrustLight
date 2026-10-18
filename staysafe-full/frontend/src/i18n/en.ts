@@ -464,7 +464,7 @@ const enBase = {
   support: {
     title: "Support TrustLight",
     text: "TrustLight is built by an independent developer with one goal: keeping people safe from scams, not making money. It is free for everyone, with no ads and no selling of data, and it will stay that way. If it has helped you, your family or friends, you can help it grow and reach more people.",
-    points: ["Keeps the servers running, so every check stays fast and free", "Adds new scam checks and more languages", "Keeps TrustLight ad-free and independent"],
+    points: ["Keeps TrustLight running smoothly, so every check stays fast and free", "Adds new scam checks and more languages", "Keeps TrustLight ad-free and independent"],
     button: "Support TrustLight",
     upiPay: "Pay with UPI",
     phoneHint: "Open TrustLight on your phone to pay with any UPI app.",
