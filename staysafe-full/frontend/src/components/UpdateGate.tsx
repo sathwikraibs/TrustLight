@@ -10,7 +10,7 @@ export function UpdateGate() {
   return (
     <div
       role="alertdialog" aria-modal="true" aria-labelledby="update-title" aria-describedby="update-body"
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink-900/40 p-4 backdrop-blur-md"
+      className="fixed inset-0 z-100 flex items-center justify-center bg-ink-900/40 p-4 backdrop-blur-md"
     >
       <div className="w-full max-w-sm rounded-3xl bg-cream-50 p-6 text-center shadow-warm-lg animate-fade-up">
         <BrandMark className="mx-auto h-14 w-14" />
@@ -18,7 +18,7 @@ export function UpdateGate() {
         <p id="update-body" className="mt-2 font-body text-sm leading-relaxed text-ink-700">{t("update.body")}</p>
         <button
           type="button" onClick={() => updateNow()}
-          className="btn-press mt-5 w-full rounded-2xl bg-brand-600 px-5 py-3.5 font-body text-base font-bold text-cream-50 shadow-warm hover:bg-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-200"
+          className="btn-press mt-5 w-full rounded-2xl bg-brand-600 px-5 py-3.5 font-body text-base font-bold text-cream-50 shadow-warm hover:bg-brand-700 focus:outline-hidden focus-visible:ring-4 focus-visible:ring-brand-200"
         >
           {t("update.button")}
         </button>

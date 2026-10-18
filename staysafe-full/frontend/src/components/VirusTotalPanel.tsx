@@ -109,7 +109,7 @@ export function VirusTotalPanel({ vt, kind = "file" }: { vt?: VirusTotalInfo; ki
           {facts.filter(([, v]) => v).map(([k, v]) => (
             <div key={k} className="min-w-0">
               <dt className="font-body text-[11px] font-bold uppercase tracking-wide text-dustyblue-500">{k}</dt>
-              <dd className="break-words font-body text-sm font-semibold text-ink-800">{v}</dd>
+              <dd className="wrap-break-word font-body text-sm font-semibold text-ink-800">{v}</dd>
             </div>
           ))}
         </dl>

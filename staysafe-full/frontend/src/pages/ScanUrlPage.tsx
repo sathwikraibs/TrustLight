@@ -65,7 +65,7 @@ export function ScanUrlPage({ onNavigate }: { onNavigate?: (path: string) => voi
           onChange={(e) => setUrl(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") handleCheck(); }}
           placeholder="https://example.com"
-          className="w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-3.5 font-body text-base text-ink-800 outline-none transition-colors focus:border-brand-400"
+          className="w-full rounded-2xl border-2 border-cream-200 bg-cream-100 px-4 py-3.5 font-body text-base text-ink-800 outline-hidden transition-colors focus:border-brand-400"
         />
         <div className="mt-4">
           <Button onClick={handleCheck} disabled={loading || !url.trim()} fullWidth>

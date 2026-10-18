@@ -50,7 +50,7 @@ export function RatingSummary() {
             <div key={k} className="flex items-center gap-2">
               <span className="w-6 text-right font-body text-xs font-bold text-ink-700">{k}★</span>
               <span className="h-2.5 flex-1 overflow-hidden rounded-full bg-cream-200">
-                <span className="block h-full rounded-full bg-gradient-to-r from-beam-300 to-beam-500 grow-x origin-left"
+                <span className="block h-full rounded-full bg-linear-to-r from-beam-300 to-beam-500 grow-x origin-left"
                   style={{ width: `${(s.stars[k] / max) * 100}%` }} />
               </span>
               <span className="w-8 font-body text-xs text-dustyblue-600">{s.stars[k]}</span>

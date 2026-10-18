@@ -132,7 +132,7 @@ export function FeedbackCard({ from = "settings", intent, compact = false }: {
               aria-label={`${n} / 5, ${levels[n - 1] ?? ""}`}
               onClick={() => { setHover(0); pick(n); }}
               onPointerEnter={(e) => { if (e.pointerType === "mouse") setHover(n); }}
-              className={`touch-manipulation rounded-lg p-1 transition-transform duration-150 focus:outline-none focus-visible:ring-4 focus-visible:ring-beam-200 ${shown >= n ? "scale-105" : ""}`}>
+              className={`touch-manipulation rounded-lg p-1 transition-transform duration-150 focus:outline-hidden focus-visible:ring-4 focus-visible:ring-beam-200 ${shown >= n ? "scale-105" : ""}`}>
               <StarIcon on={shown >= n} size={starSize} />
             </button>
           ))}
@@ -168,7 +168,7 @@ export function FeedbackCard({ from = "settings", intent, compact = false }: {
             </span>
             <textarea value={message} onChange={(e) => setMessage(e.target.value.slice(0, 1500))} rows={compact ? 3 : 4}
               placeholder={high ? t("feedback.placeholderHigh") : t("feedback.placeholderLow")}
-              className="w-full rounded-xl border border-cream-300 bg-cream-50 p-3 font-body text-sm text-ink-900 placeholder:text-dustyblue-400 focus:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-100" />
+              className="w-full rounded-xl border border-cream-300 bg-cream-50 p-3 font-body text-sm text-ink-900 placeholder:text-dustyblue-400 focus:border-brand-400 focus:outline-hidden focus:ring-2 focus:ring-brand-100" />
           </label>
 
           {message.trim().length > 0 && (

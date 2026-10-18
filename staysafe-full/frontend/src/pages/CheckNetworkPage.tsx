@@ -91,7 +91,7 @@ export function CheckNetworkPage({ onNavigate }: { onNavigate?: (path: string) =
   return (
     <div>
       <ToolHeader path="/check-network" title={t("network.title")} subtitle={t("network.subtitle")} />
-      <div className="rounded-2xl bg-gradient-to-br from-dustyblue-100 to-cream-100 p-8 text-center shadow-warm">
+      <div className="rounded-2xl bg-linear-to-br from-dustyblue-100 to-cream-100 p-8 text-center shadow-warm">
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-dustyblue-200 text-dustyblue-600">
           <IconNetwork className="h-8 w-8" />
         </div>
@@ -119,7 +119,7 @@ export function CheckNetworkPage({ onNavigate }: { onNavigate?: (path: string) =
         >
           {rows.length > 0 && (
             <Section icon={<IconNetwork className="h-5 w-5" />} title={t("networkMore.detailsTitle")} tone="info" defaultOpen>
-              <dl className="grid gap-2.5 sm:grid-cols-[auto,1fr] sm:gap-x-5">
+              <dl className="grid gap-2.5 sm:grid-cols-[auto_1fr] sm:gap-x-5">
                 {rows.map(([k, v]) => (
                   <div key={k} className="contents">
                     <dt className="font-body text-xs font-bold uppercase tracking-wide text-dustyblue-600 sm:pt-0.5">{k}</dt>
@@ -143,7 +143,7 @@ export function CheckNetworkPage({ onNavigate }: { onNavigate?: (path: string) =
       )}
 
       {/* Deeper Wi-Fi check on SafeHop */}
-      <div className="mt-5 overflow-hidden rounded-2xl bg-gradient-to-br from-dustyblue-500 to-dustyblue-600 p-5 text-cream-50 shadow-warm sm:p-6">
+      <div className="mt-5 overflow-hidden rounded-2xl bg-linear-to-br from-dustyblue-500 to-dustyblue-600 p-5 text-cream-50 shadow-warm sm:p-6">
         <p className="font-heading text-lg font-bold">{t("networkMore.safehopTitle")}</p>
         <p className="mt-1.5 font-body text-sm text-cream-50/90">{t("networkMore.safehopText")}</p>
         <a

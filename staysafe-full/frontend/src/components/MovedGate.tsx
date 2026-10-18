@@ -10,7 +10,7 @@ export function MovedGate() {
   return (
     <div
       role="alertdialog" aria-modal="true" aria-labelledby="moved-title" aria-describedby="moved-body"
-      className="fixed inset-0 z-[99] flex items-center justify-center bg-ink-900/40 p-4 backdrop-blur-md"
+      className="fixed inset-0 z-99 flex items-center justify-center bg-ink-900/40 p-4 backdrop-blur-md"
     >
       <div className="w-full max-w-sm rounded-3xl bg-cream-50 p-6 shadow-warm-lg animate-fade-up">
         <BrandMark className="mx-auto h-14 w-14" />
@@ -26,7 +26,7 @@ export function MovedGate() {
         </ol>
         <a
           href={reinstallLink()} target="_blank" rel="noopener"
-          className="btn-press mt-5 block w-full rounded-2xl bg-brand-600 px-5 py-3.5 text-center font-body text-base font-bold text-cream-50 shadow-warm hover:bg-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-200"
+          className="btn-press mt-5 block w-full rounded-2xl bg-brand-600 px-5 py-3.5 text-center font-body text-base font-bold text-cream-50 shadow-warm hover:bg-brand-700 focus:outline-hidden focus-visible:ring-4 focus-visible:ring-brand-200"
         >
           {t("moved.open")}
         </a>

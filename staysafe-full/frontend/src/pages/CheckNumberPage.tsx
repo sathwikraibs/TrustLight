@@ -77,7 +77,7 @@ export function CheckNumberPage({ onNavigate }: { onNavigate?: (path: string) =>
     } catch (e) { setError(errorMessage(e)); } finally { setLoading(false); }
   }
 
-  const inputCls = "w-full rounded-xl border-2 border-cream-200 bg-cream-100 px-4 py-3 font-body text-lg text-ink-800 outline-none transition-colors focus:border-brand-400 focus:bg-cream-50";
+  const inputCls = "w-full rounded-xl border-2 border-cream-200 bg-cream-100 px-4 py-3 font-body text-lg text-ink-800 outline-hidden transition-colors focus:border-brand-400 focus:bg-cream-50";
   const linkBtn = "btn-press mt-3 inline-flex items-center justify-center rounded-xl px-4 py-2.5 font-body text-sm font-bold shadow-warm-sm";
 
   return (

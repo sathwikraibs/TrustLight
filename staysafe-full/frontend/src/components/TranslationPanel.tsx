@@ -85,7 +85,7 @@ export function TranslationPanel({ original, sourceLang, initial, fromScreenshot
           <p className="mb-1.5 font-body text-xs font-bold uppercase tracking-wide text-dustyblue-500">
             {fromScreenshot ? t("message.ocrTitle") : t("message.trOriginal")}{sourceName ? ` · ${sourceName}` : ""}
           </p>
-          <p className="max-h-72 overflow-y-auto whitespace-pre-wrap break-words rounded-xl bg-cream-100 p-3 font-body text-sm text-ink-800 scrollbar-warm">
+          <p className="max-h-72 overflow-y-auto whitespace-pre-wrap wrap-break-word rounded-xl bg-cream-100 p-3 font-body text-sm text-ink-800 scrollbar-warm">
             {original}
           </p>
         </div>
@@ -96,7 +96,7 @@ export function TranslationPanel({ original, sourceLang, initial, fromScreenshot
             {done ? languageName(done.to, lang) : t("message.trShowIn")}
           </p>
           {done ? (
-            <p className="max-h-72 overflow-y-auto whitespace-pre-wrap break-words rounded-xl bg-brand-100 p-3 font-body text-sm text-ink-800 scrollbar-warm">
+            <p className="max-h-72 overflow-y-auto whitespace-pre-wrap wrap-break-word rounded-xl bg-brand-100 p-3 font-body text-sm text-ink-800 scrollbar-warm">
               {done.text}
             </p>
           ) : same ? (

@@ -1,6 +1,190 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-mist: #f5f6fb;
+
+  --color-brand-50: #eff0ff;
+  --color-brand-100: #e2e4fd;
+  --color-brand-200: #c8cbf8;
+  --color-brand-300: #a2a6ee;
+  --color-brand-400: #7275db;
+  --color-brand-500: #4d4bc4;
+  --color-brand-600: #3730a3;
+  --color-brand-700: #2d2786;
+  --color-brand-800: #221e66;
+  --color-brand-900: #181548;
+
+  --color-beam-100: #fff6da;
+  --color-beam-200: #fde68a;
+  --color-beam-300: #fcd34d;
+  --color-beam-400: #fbbf24;
+  --color-beam-500: #f0a500;
+  --color-beam-600: #b07a0a;
+
+  --color-cream-50: #ffffff;
+  --color-cream-100: #f4f5fa;
+  --color-cream-200: #e6e8f1;
+  --color-cream-300: #d2d6e4;
+
+  --color-terracotta-300: #f6cf95;
+  --color-terracotta-400: #eda23b;
+  --color-terracotta-500: #d98324;
+  --color-terracotta-600: #b4651a;
+  --color-terracotta-700: #8c4c12;
+
+  --color-sage-100: #e3f4eb;
+  --color-sage-200: #c5e8d4;
+  --color-sage-300: #92cfad;
+  --color-sage-400: #4fb07f;
+  --color-sage-500: #22905c;
+  --color-sage-600: #1a784b;
+  --color-sage-700: #135e3b;
+
+  --color-dustyblue-100: #eceef6;
+  --color-dustyblue-200: #d7dbe8;
+  --color-dustyblue-300: #abb2c9;
+  --color-dustyblue-400: #7e87a3;
+  --color-dustyblue-500: #5f6886;
+  --color-dustyblue-600: #4a526e;
+
+  --color-rust-300: #f0a79e;
+  --color-rust-400: #e5675a;
+  --color-rust-500: #cc3a2e;
+  --color-rust-600: #a52a21;
+
+  --color-ink-700: #363a57;
+  --color-ink-800: #23273f;
+  --color-ink-900: #14172e;
+
+  --font-heading: 'Baloo 2', 'Baloo Tamma 2', system-ui, sans-serif;
+  --font-body:
+    'Noto Sans', 'Noto Sans Devanagari', 'Noto Sans Kannada', system-ui,
+    sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-xl2: 20px;
+  --radius-xl3: 28px;
+
+  --shadow-warm-sm:
+    0 1px 2px rgba(20, 23, 60, 0.05), 0 2px 8px rgba(20, 23, 60, 0.05);
+  --shadow-warm:
+    0 1px 3px rgba(20, 23, 60, 0.05), 0 8px 24px rgba(20, 23, 60, 0.07);
+  --shadow-warm-lg:
+    0 4px 10px rgba(20, 23, 60, 0.06), 0 18px 44px rgba(20, 23, 60, 0.12);
+  --shadow-warm-inset: inset 0 2px 4px rgba(20, 23, 60, 0.06);
+
+  --ease-bounce-soft: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-breath: breath 1.8s ease-in-out infinite;
+  --animate-breath-delayed: breath-delayed 1.8s ease-in-out 0.3s infinite;
+  --animate-fade-up: fade-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-lift: lift 0.4s ease-in-out;
+
+  @keyframes breath {
+    0%,
+    100% {
+      transform: scale(0.85);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+  @keyframes breath-delayed {
+    0%,
+    100% {
+      transform: scale(0.7);
+      opacity: 0.4;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+  }
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes lift {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+/* Tailwind 4 gives buttons a plain arrow pointer; keep the hand pointer they had before */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility btn-press {
+  transition:
+    transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.2s ease;
+  &:active {
+    transform: scale(0.96);
+  }
+}
+
+@utility card-hover {
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+}
+
+@utility scrollbar-warm {
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f4f5fa;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #d2d6e4;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #abb2c9;
+  }
+}
 
 @layer base {
   html {
@@ -23,38 +207,6 @@
   html:is([lang="hi"], [lang="kn"], [lang="tcy"]) .tracking-wide,
   html:is([lang="hi"], [lang="kn"], [lang="tcy"]) .tracking-wider { letter-spacing: 0; }
   html:is([lang="hi"], [lang="kn"], [lang="tcy"]) .uppercase { text-transform: none; }
-}
-
-@layer components {
-  .btn-press {
-    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
-  }
-  .btn-press:active {
-    transform: scale(0.96);
-  }
-  .card-hover {
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-  }
-  .card-hover:hover {
-    transform: translateY(-4px) scale(1.01);
-  }
-}
-
-@layer utilities {
-  .scrollbar-warm::-webkit-scrollbar {
-    width: 8px;
-  }
-  .scrollbar-warm::-webkit-scrollbar-track {
-    background: #F4F5FA;
-    border-radius: 8px;
-  }
-  .scrollbar-warm::-webkit-scrollbar-thumb {
-    background: #D2D6E4;
-    border-radius: 8px;
-  }
-  .scrollbar-warm::-webkit-scrollbar-thumb:hover {
-    background: #ABB2C9;
-  }
 }
 
 input::placeholder,

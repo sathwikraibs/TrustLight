@@ -93,9 +93,9 @@ const TONE_ICON: Record<Tone, ReactNode> = {
 };
 const TONE_BAR: Record<Tone, string> = { safe: "bg-sage-500", caution: "bg-terracotta-400", danger: "bg-rust-500" };
 const TONE_CARD: Record<Tone, string> = {
-  safe: "border-sage-300 bg-gradient-to-b from-sage-100/80 to-cream-50",
-  caution: "border-terracotta-300 bg-gradient-to-b from-terracotta-300/25 to-cream-50",
-  danger: "border-rust-400/60 bg-gradient-to-b from-rust-400/15 to-cream-50",
+  safe: "border-sage-300 bg-linear-to-b from-sage-100/80 to-cream-50",
+  caution: "border-terracotta-300 bg-linear-to-b from-terracotta-300/25 to-cream-50",
+  danger: "border-rust-400/60 bg-linear-to-b from-rust-400/15 to-cream-50",
 };
 
 /** The simple score line: number, level and a bar. */
@@ -136,7 +136,7 @@ export function CheckList({ checks }: { checks: Check[] }) {
       {visible.map((c, i) => (
         <li key={`${c.id}-${i}`} className="row-in flex items-start gap-2.5" style={{ animationDelay: `${i * 40}ms` }}>
           <StatusDot status={c.status} />
-          <span className={`min-w-0 flex-1 break-words font-body text-sm leading-snug sm:text-[15px] ${c.status === "fail" ? "font-semibold text-ink-900" : "text-ink-800"}`}>
+          <span className={`min-w-0 flex-1 wrap-break-word font-body text-sm leading-snug sm:text-[15px] ${c.status === "fail" ? "font-semibold text-ink-900" : "text-ink-800"}`}>
             {text(c)}
           </span>
         </li>
@@ -277,7 +277,7 @@ export function ResultReport({ tool, verdict, riskScore, subject, checks, findin
             {notes.map((n, i) => (
               <li key={i} className="flex items-start gap-2.5 font-body text-sm text-ink-800">
                 <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-dustyblue-400" />
-                <span className="min-w-0 break-words">{ts(n)}</span>
+                <span className="min-w-0 wrap-break-word">{ts(n)}</span>
               </li>
             ))}
           </ul>
