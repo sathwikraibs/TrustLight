@@ -1,0 +1,41 @@
+# Temporary helper for the build-tools upgrade (Vite 8, Tailwind 4). Deleted after the upgrade.
+name: Upgrade helper
+on: { workflow_dispatch: {} }
+permissions:
+  contents: write
+jobs:
+  upgrade:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults: { run: { working-directory: staysafe-full/frontend } }
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with: { node-version: "22" }
+      - name: Build before
+        run: npm install --no-audit --no-fund && npm run build && cp -r dist /tmp/old && rm -rf node_modules package-lock.json
+      - name: Upgrade Tailwind (official tool)
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"; git config user.name "github-actions[bot]"
+          npm install --no-audit --no-fund
+          npx -y @tailwindcss/upgrade@latest --force 2>&1 | tail -40
+      - name: Upgrade Vite
+        run: npm install --no-audit --no-fund -D vite@latest @vitejs/plugin-react@latest 2>&1 | tail -20
+      - name: Versions and audit
+        run: |
+          echo "::warning::VERSIONS vite=$(node -p 'require("vite/package.json").version') plugin-react=$(node -p 'require("@vitejs/plugin-react/package.json").version') tailwind=$(node -p 'require("tailwindcss/package.json").version')"
+          npm audit --json > /tmp/audit.json || true
+          node -e 'const a=require("/tmp/audit.json");const v=Object.entries(a.vulnerabilities||{});console.log(`::warning::AUDIT-COUNT ${v.length}`);for(const [n,x] of v)console.log(`::warning::AUDIT ${x.severity} ${n} ${x.range}`)'
+      - name: Type-check and build after
+        run: npx tsc -p tsconfig.app.json --noEmit && npm run build && node scripts/check-page.mjs
+      - name: Screenshots
+        run: |
+          mkdir -p /tmp/pw && cd /tmp/pw && npm init -y >/dev/null && npm i --no-audit --no-fund playwright >/dev/null && npx playwright install --with-deps chromium >/dev/null
+          cd $GITHUB_WORKSPACE/staysafe-full/frontend
+          NODE_PATH=/tmp/pw/node_modules node scripts/shots.mjs /tmp/old ../../upgrade-shots/old
+          NODE_PATH=/tmp/pw/node_modules node scripts/shots.mjs dist ../../upgrade-shots/new intro
+      - name: Save the changes on this branch
+        run: |
+          rm -rf node_modules dist package-lock.json
+          cd ../.. && git add -A staysafe-full/frontend upgrade-shots && git status --short | head -60
+          git commit -qm "Upgrade helper: Tailwind 4 and Vite 8, with before/after screenshots" && git push origin HEAD:build-upgrade
