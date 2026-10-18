@@ -217,7 +217,7 @@ def test_people_asked_for_nude_photos_or_threatened_are_helped_not_turned_away()
     # the AI wrongly calls it off-topic: it is asked once more and the real answer is shown
     fresh(GROQ_API_KEY="k")
     replies = iter(['{"kind": "other", "reply": "I can only help with online safety."}',
-                    '{"kind": "safety", "reply": "Please don\'t send any photo.\n1. Report at cybercrime.gov.in or call 1930.\n2. StopNCII.org can stop the photos being posted."}'])
+                    '{"kind": "safety", "reply": "Please don\'t send any photo.\\n1. Report at cybercrime.gov.in or call 1930.\\n2. StopNCII.org can stop the photos being posted."}'])
     use(lambda url, **kw: openai_ok(next(replies)))
     d = c.post("/api/assistant", json={"message": "a man on instagram keeps asking for my nude pics and threatens me", "lang": "en"}).get_json()
     assert d["kind"] == "safety" and "1930" in d["reply"] and "StopNCII.org" in d["reply"], d
