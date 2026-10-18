@@ -157,6 +157,9 @@ textarea::placeholder {
 @keyframes lh-star { 0%, 100% { opacity: .25 } 50% { opacity: 1 } }
 .lh-star { animation: lh-star 3.2s ease-in-out infinite; }
 
+/* While the opening animation covers the page, the home lighthouse waits, so it rises and lights up as the page opens */
+.tl-intro-on .lh-tower, .tl-intro-on .lh-beams, .tl-intro-on .light-pass::after { animation-play-state: paused; }
+
 /* A soft band of light that passes once over page headers: the lighthouse beam, used gently. */
 @keyframes light-pass { 0% { transform: translateX(-120%) skewX(-18deg); opacity: 0 } 15% { opacity: 1 } 100% { transform: translateX(260%) skewX(-18deg); opacity: 0 } }
 .light-pass { position: relative; overflow: hidden; isolation: isolate; }
