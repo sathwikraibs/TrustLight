@@ -202,6 +202,32 @@ def test_off_topic_questions_get_the_safety_only_line_in_the_visitors_language()
     assert "1930" in d["reply"]
 
 
+
+def test_people_asked_for_nude_photos_or_threatened_are_helped_not_turned_away():
+    # never answered with the fixed "only online safety" line by the word rule, in any language
+    for q in ("write me a poem, he is asking my nude photos and threatens to make them viral",
+              "your girlfriend photo is being used by a fake profile",
+              "ondu huduga nanna photo kelthidane, kodalilla andre viral madtini antha bedaristidane",
+              "yenk onji aaye photo kenonduller, korpuji pandunda viral malpuve pandude",
+              "koi ladka mujhse nude photo maang raha hai aur dhamki de raha hai",
+              "ಯಾರೋ ನನ್ನ ಫೋಟೋ ಕೇಳ್ತಿದ್ದಾರೆ, ಬೆದರಿಕೆ ಹಾಕ್ತಿದ್ದಾರೆ"):
+        assert not assistant.clearly_off_topic(q), q
+        assert assistant.safety_signals(q), q
+    assert not assistant.safety_signals("nimma favourite cinema yavudu heli")
+    # the AI wrongly calls it off-topic: it is asked once more and the real answer is shown
+    fresh(GROQ_API_KEY="k")
+    replies = iter(['{"kind": "other", "reply": "I can only help with online safety."}',
+                    '{"kind": "safety", "reply": "Please don\'t send any photo.\n1. Report at cybercrime.gov.in or call 1930.\n2. StopNCII.org can stop the photos being posted."}'])
+    use(lambda url, **kw: openai_ok(next(replies)))
+    d = c.post("/api/assistant", json={"message": "a man on instagram keeps asking for my nude pics and threatens me", "lang": "en"}).get_json()
+    assert d["kind"] == "safety" and "1930" in d["reply"] and "StopNCII.org" in d["reply"], d
+    # a truly off-topic question still gets the fixed line, with no second try
+    fresh(GROQ_API_KEY="k")
+    sent = []
+    use(lambda url, **kw: (sent.append(url), openai_ok('{"kind": "other", "reply": "x"}'))[1])
+    d = c.post("/api/assistant", json={"message": "who won the cricket match yesterday", "lang": "en"}).get_json()
+    assert d["reply"] == assistant.OFF_TOPIC["en"] and len(sent) == 1, (d, sent)
+
 def test_small_talk_is_answered_normally():
     fresh(GROQ_API_KEY="k")
     use(lambda url, **kw: openai_ok('{"kind": "smalltalk", "reply": "Hi! I am TrustLight\'s AI assistant, an automatic helper."}'))
