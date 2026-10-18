@@ -12,76 +12,10 @@
     <meta name="description" content="TrustLight: a light you can trust. Free scam checker for links, messages, QR codes, numbers and files, in English, Hindi, Kannada and Tulu." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <style>
-      /* Opening animation (about 3 seconds, once each time the app is opened):
-         the lighthouse sweeps its light over the night sea, turns into the TrustLight logo,
-         the name rises below it, then a band of light opens the page. Plain CSS, so it starts
-         before the rest of the app has loaded. */
-      #tl-intro { position: fixed; inset: 0; z-index: 2147483000; display: flex; flex-direction: column;
-        align-items: center; justify-content: center; background: #F5F6FB; overflow: hidden; }
-      #tl-intro svg { width: min(46vw, 210px); height: auto; overflow: visible;
-        animation: tli-in .5s cubic-bezier(.22,1,.36,1) both, tli-lift .6s 1.65s cubic-bezier(.65,0,.35,1) forwards; }
-      @keyframes tli-in { from { opacity: 0; transform: scale(.86) } to { opacity: 1; transform: scale(1) } }
-      @keyframes tli-lift { to { transform: translateY(-14px) scale(.8) } }
-
-      /* night circle that becomes the logo tile */
-      #tl-intro .tli-tile { rx: 60px; ry: 60px; fill: #1E1B4B;
-        animation: tli-tile .55s 1.6s cubic-bezier(.65,0,.35,1) forwards; }
-      @keyframes tli-tile { to { rx: 27px; ry: 27px; fill: #3730A3 } }
-
-      #tl-intro .tli-star { animation: tli-twinkle 1.1s ease-in-out infinite alternate, tli-fade .35s 1.55s forwards; }
-      @keyframes tli-twinkle { from { opacity: .25 } to { opacity: 1 } }
-      #tl-intro .tli-sea { animation: tli-sea 2.4s linear infinite, tli-sink .45s 1.55s ease-in forwards; }
-      #tl-intro .tli-sea2 { animation: tli-sea 3.6s linear infinite reverse, tli-sink .45s 1.5s ease-in forwards; }
-      @keyframes tli-sea { from { transform: translateX(0) } to { transform: translateX(40px) } }
-      @keyframes tli-sink { to { opacity: 0; transform: translateY(26px) } }
-      @keyframes tli-fade { to { opacity: 0 } }
-
-      /* the turning light, settling where the logo's light is */
-      #tl-intro .tli-sweep { transform-box: view-box; transform-origin: 60px 43.7px; opacity: 0;
-        animation: tli-on .4s .3s ease-out forwards, tli-turn 1.3s .35s cubic-bezier(.45,0,.25,1) forwards, tli-fade .3s 1.75s forwards; }
-      @keyframes tli-on { to { opacity: 1 } }
-      @keyframes tli-turn { 0% { transform: rotate(-28deg) } 45% { transform: rotate(24deg) } 100% { transform: rotate(0deg) } }
-      #tl-intro .tli-glow { transform-box: fill-box; transform-origin: center; opacity: 0;
-        animation: tli-glow .9s .25s ease-in-out 2 alternate, tli-fade .3s 1.75s forwards; }
-      @keyframes tli-glow { from { opacity: .2; transform: scale(.6) } to { opacity: 1; transform: scale(1.25) } }
-      #tl-intro .tli-logobeams { opacity: 0; animation: tli-on .35s 1.7s ease-out forwards; }
-
-      /* the name rises under the logo, with a glint of light */
-      #tl-intro .tli-name { position: relative; margin-top: 6px; overflow: hidden; padding: 0 6px;
-        font-family: 'Baloo 2', ui-rounded, system-ui, sans-serif; font-weight: 800; letter-spacing: -.01em;
-        font-size: clamp(30px, 9vw, 46px); line-height: 1.15; opacity: 0;
-        animation: tli-rise .6s 1.95s cubic-bezier(.22,1,.36,1) forwards; }
-      #tl-intro .tli-name b { font-weight: 800; color: #1E1B4B; }
-      #tl-intro .tli-name i { font-style: normal; color: #3730A3; }
-      #tl-intro .tli-name::after { content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 35%;
-        background: linear-gradient(90deg, transparent, rgba(253,230,138,.6), transparent); transform: skewX(-18deg); border-radius: 8px;
-        animation: tli-glint .7s 2.35s ease-out forwards; }
-      @keyframes tli-rise { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: translateY(0) } }
-      @keyframes tli-glint { to { left: 120% } }
-
-      /* the page opens: a band of light passes and the cover fades */
-      #tl-intro::after { content: ""; position: absolute; top: -20%; bottom: -20%; left: -60%; width: 45%; pointer-events: none;
-        background: linear-gradient(90deg, transparent, rgba(253,230,138,.55), rgba(255,255,255,.9), rgba(253,230,138,.55), transparent);
-        transform: skewX(-14deg); opacity: 0; }
-      #tl-intro.tl-out { animation: tli-out .5s .1s ease-in forwards; pointer-events: none; }
-      #tl-intro.tl-out::after { animation: tli-beam .55s ease-out forwards; }
-      @keyframes tli-beam { 0% { opacity: 1; left: -60% } 100% { opacity: 1; left: 130% } }
-      @keyframes tli-out { to { opacity: 0; transform: scale(1.04) } }
-      html.tl-reveal #root { animation: tli-page .6s .12s ease-out both; }
-      @keyframes tli-page { from { opacity: 0 } to { opacity: 1 } }
-
-      @media (prefers-reduced-motion: reduce) {
-        #tl-intro *, #tl-intro svg, #tl-intro::after { animation: none !important; }
-        #tl-intro .tli-tile { rx: 27px; ry: 27px; fill: #3730A3; }
-        #tl-intro .tli-star, #tl-intro .tli-sea, #tl-intro .tli-sea2, #tl-intro .tli-sweep, #tl-intro .tli-glow { display: none; }
-        #tl-intro .tli-logobeams, #tl-intro .tli-name { opacity: 1; }
-        #tl-intro.tl-out { animation: tli-out .3s ease-in forwards !important; }
-      }
-    </style>
+    <link rel="stylesheet" href="/intro.css" />
   </head>
   <body>
-    <div id="tl-intro" aria-hidden="true">
+    <div id="tl-intro" aria-hidden="true" hidden>
       <svg viewBox="0 0 120 120">
         <defs>
           <linearGradient id="tli-br" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FDE68A" stop-opacity=".95" /><stop offset="1" stop-color="#FDE68A" stop-opacity="0" /></linearGradient>
@@ -92,9 +26,9 @@
         <rect class="tli-tile" x="0" y="0" width="120" height="120" rx="60" />
         <g clip-path="url(#tli-clip)">
           <circle class="tli-star" cx="22" cy="26" r="1.3" fill="#fff" />
-          <circle class="tli-star" cx="97" cy="22" r="1.1" fill="#fff" style="animation-delay:.4s,1.55s" />
-          <circle class="tli-star" cx="90" cy="50" r="1" fill="#fff" style="animation-delay:.8s,1.55s" />
-          <circle class="tli-star" cx="28" cy="56" r=".9" fill="#fff" style="animation-delay:.2s,1.55s" />
+          <circle class="tli-star tli-s2" cx="97" cy="22" r="1.1" fill="#fff" />
+          <circle class="tli-star tli-s3" cx="90" cy="50" r="1" fill="#fff" />
+          <circle class="tli-star tli-s4" cx="28" cy="56" r=".9" fill="#fff" />
           <g class="tli-sweep">
             <path d="M64 43.7 L130 22 V66 Z" fill="url(#tli-br)" />
             <path d="M56 43.7 L-10 22 V66 Z" fill="url(#tli-bl)" />
@@ -118,31 +52,7 @@
       </svg>
       <div class="tli-name"><b>Trust</b><i>Light</i></div>
     </div>
-    <script>
-      // Play the opening once per app launch, only on the home page (never when something was shared to TrustLight)
-      (function () {
-        var el = document.getElementById('tl-intro');
-        try {
-          var p = location.pathname, q = location.search;
-          if ((p !== '/' && p !== '/index.html') || /shared|reinstall/.test(q) || sessionStorage.getItem('tl-intro')) { el.remove(); return; }
-          sessionStorage.setItem('tl-intro', '1');
-        } catch (e) { /* storage blocked: just play it */ }
-        var root = document.documentElement;
-        root.classList.add('tl-intro-on');
-        var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var start = Date.now(), least = reduced ? 900 : 2900;
-        function ready() { var r = document.getElementById('root'); return r && r.childElementCount > 0; }
-        (function wait() {
-          var t = Date.now() - start;
-          if ((t >= least && ready()) || t > 8000) {       // the page is ready, or it's taking too long: open anyway
-            root.classList.remove('tl-intro-on');
-            root.classList.add('tl-reveal');
-            el.classList.add('tl-out');
-            setTimeout(function () { el.remove(); root.classList.remove('tl-reveal'); }, 800);
-          } else setTimeout(wait, 50);
-        })();
-      })();
-    </script>
+    <script src="/intro.js"></script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

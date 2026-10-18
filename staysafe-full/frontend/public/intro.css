@@ -1,0 +1,71 @@
+/* TrustLight opening animation. A separate file because the site's security policy (CSP) blocks
+   styles written inside the page. Shown only after intro.js has checked this file is loaded. */
+#tl-intro[hidden] { display: none !important; }
+/* Opening animation (about 3 seconds, once each time the app is opened):
+   the lighthouse sweeps its light over the night sea, turns into the TrustLight logo,
+   the name rises below it, then a band of light opens the page. Plain CSS, so it starts
+   before the rest of the app has loaded. */
+#tl-intro { position: fixed; inset: 0; z-index: 2147483000; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; background: #F5F6FB; overflow: hidden; }
+#tl-intro svg { width: min(46vw, 210px); height: auto; overflow: visible;
+  animation: tli-in .5s cubic-bezier(.22,1,.36,1) both, tli-lift .6s 1.65s cubic-bezier(.65,0,.35,1) forwards; }
+@keyframes tli-in { from { opacity: 0; transform: scale(.86) } to { opacity: 1; transform: scale(1) } }
+@keyframes tli-lift { to { transform: translateY(-14px) scale(.8) } }
+
+/* night circle that becomes the logo tile */
+#tl-intro .tli-tile { rx: 60px; ry: 60px; fill: #1E1B4B;
+  animation: tli-tile .55s 1.6s cubic-bezier(.65,0,.35,1) forwards; }
+@keyframes tli-tile { to { rx: 27px; ry: 27px; fill: #3730A3 } }
+
+#tl-intro .tli-star { animation: tli-twinkle 1.1s ease-in-out infinite alternate, tli-fade .35s 1.55s forwards; }
+@keyframes tli-twinkle { from { opacity: .25 } to { opacity: 1 } }
+#tl-intro .tli-sea { animation: tli-sea 2.4s linear infinite, tli-sink .45s 1.55s ease-in forwards; }
+#tl-intro .tli-sea2 { animation: tli-sea 3.6s linear infinite reverse, tli-sink .45s 1.5s ease-in forwards; }
+@keyframes tli-sea { from { transform: translateX(0) } to { transform: translateX(40px) } }
+@keyframes tli-sink { to { opacity: 0; transform: translateY(26px) } }
+@keyframes tli-fade { to { opacity: 0 } }
+
+/* the turning light, settling where the logo's light is */
+#tl-intro .tli-sweep { transform-box: view-box; transform-origin: 60px 43.7px; opacity: 0;
+  animation: tli-on .4s .3s ease-out forwards, tli-turn 1.3s .35s cubic-bezier(.45,0,.25,1) forwards, tli-fade .3s 1.75s forwards; }
+@keyframes tli-on { to { opacity: 1 } }
+@keyframes tli-turn { 0% { transform: rotate(-28deg) } 45% { transform: rotate(24deg) } 100% { transform: rotate(0deg) } }
+#tl-intro .tli-glow { transform-box: fill-box; transform-origin: center; opacity: 0;
+  animation: tli-glow .9s .25s ease-in-out 2 alternate, tli-fade .3s 1.75s forwards; }
+@keyframes tli-glow { from { opacity: .2; transform: scale(.6) } to { opacity: 1; transform: scale(1.25) } }
+#tl-intro .tli-logobeams { opacity: 0; animation: tli-on .35s 1.7s ease-out forwards; }
+
+/* the name rises under the logo, with a glint of light */
+#tl-intro .tli-name { position: relative; margin-top: 6px; overflow: hidden; padding: 0 6px;
+  font-family: 'Baloo 2', ui-rounded, system-ui, sans-serif; font-weight: 800; letter-spacing: -.01em;
+  font-size: clamp(30px, 9vw, 46px); line-height: 1.15; opacity: 0;
+  animation: tli-rise .6s 1.95s cubic-bezier(.22,1,.36,1) forwards; }
+#tl-intro .tli-name b { font-weight: 800; color: #1E1B4B; }
+#tl-intro .tli-name i { font-style: normal; color: #3730A3; }
+#tl-intro .tli-name::after { content: ""; position: absolute; top: 0; bottom: 0; left: -40%; width: 35%;
+  background: linear-gradient(90deg, transparent, rgba(253,230,138,.6), transparent); transform: skewX(-18deg); border-radius: 8px;
+  animation: tli-glint .7s 2.35s ease-out forwards; }
+@keyframes tli-rise { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes tli-glint { to { left: 120% } }
+
+/* the page opens: a band of light passes and the cover fades */
+#tl-intro::after { content: ""; position: absolute; top: -20%; bottom: -20%; left: -60%; width: 45%; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(253,230,138,.55), rgba(255,255,255,.9), rgba(253,230,138,.55), transparent);
+  transform: skewX(-14deg); opacity: 0; }
+#tl-intro.tl-out { animation: tli-out .5s .1s ease-in forwards; pointer-events: none; }
+#tl-intro.tl-out::after { animation: tli-beam .55s ease-out forwards; }
+@keyframes tli-beam { 0% { opacity: 1; left: -60% } 100% { opacity: 1; left: 130% } }
+@keyframes tli-out { to { opacity: 0; transform: scale(1.04) } }
+html.tl-reveal #root { animation: tli-page .6s .12s ease-out both; }
+@keyframes tli-page { from { opacity: 0 } to { opacity: 1 } }
+
+@media (prefers-reduced-motion: reduce) {
+  #tl-intro *, #tl-intro svg, #tl-intro::after { animation: none !important; }
+  #tl-intro .tli-tile { rx: 27px; ry: 27px; fill: #3730A3; }
+  #tl-intro .tli-star, #tl-intro .tli-sea, #tl-intro .tli-sea2, #tl-intro .tli-sweep, #tl-intro .tli-glow { display: none; }
+  #tl-intro .tli-logobeams, #tl-intro .tli-name { opacity: 1; }
+  #tl-intro.tl-out { animation: tli-out .3s ease-in forwards !important; }
+}
+#tl-intro .tli-s2 { animation-delay: .4s, 1.55s; }
+#tl-intro .tli-s3 { animation-delay: .8s, 1.55s; }
+#tl-intro .tli-s4 { animation-delay: .2s, 1.55s; }
