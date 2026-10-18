@@ -43,5 +43,5 @@ jobs:
         if: always()
         run: |
           rm -rf node_modules dist package-lock.json
-          cd ../.. && git add -A staysafe-full/frontend upgrade-shots && git status --short | head -60
+          cd ../.. && git add -A staysafe-full/frontend && { [ -d upgrade-shots ] && git add -A upgrade-shots || true; } && git status --short | head -60
           git commit -qm "Upgrade helper: Tailwind 4 and Vite 8, with before/after screenshots" && git push origin HEAD:build-upgrade
