@@ -143,6 +143,14 @@
   }
 }
 
+/* Tailwind 4 gives buttons a plain arrow pointer; keep the hand pointer they had before */
+@layer base {
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 @utility btn-press {
   transition:
     transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),

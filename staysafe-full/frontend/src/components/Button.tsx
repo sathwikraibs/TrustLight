@@ -5,7 +5,7 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   type?: "button" | "submit";
-  variant?: "primary" | "secondary" | "outline-solid";
+  variant?: "primary" | "secondary" | "outline";
   className?: string;
   fullWidth?: boolean;
 }
