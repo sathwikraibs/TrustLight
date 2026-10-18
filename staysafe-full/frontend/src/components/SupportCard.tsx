@@ -7,8 +7,9 @@ import { BrandMark, IconCheck } from "@/icons";
 
 /**
  * "Support TrustLight": an optional contribution, shown only when a payment page or UPI ID is set on
- * the server (SUPPORT_LINK / SUPPORT_UPI). Calm and factual: what it pays for, and that every check
- * stays free either way.
+ * the server (SUPPORT_LINK / SUPPORT_UPI). The UPI ID itself is never shown on screen: phones get a
+ * "Pay with UPI" button, computers a note to open TrustLight on a phone, and a small "Copy UPI ID"
+ * button is the backup for UPI apps that don't open payment links.
  */
 interface SupportInfo { available: boolean; link: string; upi: string; name: string }
 
@@ -26,7 +27,7 @@ export function SupportCard() {
   if (!info?.available) return null;
 
   const phone = isPhoneOrTablet();
-  const upiLink = info.upi ? `upi://pay?pa=${encodeURIComponent(info.upi)}&pn=${encodeURIComponent(info.name || "TrustLight")}&cu=INR` : "";
+  const upiLink = info.upi ? `upi://pay?pa=${encodeURIComponent(info.upi)}&pn=${encodeURIComponent(info.name || "TrustLight")}&cu=INR&tn=${encodeURIComponent("Support TrustLight")}` : "";
   async function copy() {
     try { await navigator.clipboard.writeText(info!.upi); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* ignore */ }
   }
@@ -57,23 +58,20 @@ export function SupportCard() {
           </a>
         )}
         {info.upi && (
-          <div className="rounded-2xl bg-cream-100 p-3">
-            <p className="font-body text-xs font-semibold text-dustyblue-600">{t("support.upiLabel")}</p>
-            <div className="mt-1 flex items-center gap-2">
-              <span className="min-w-0 flex-1 truncate font-mono text-sm font-semibold text-ink-900">{info.upi}</span>
-              <button type="button" onClick={copy}
-                className="shrink-0 rounded-lg border border-cream-300 bg-cream-50 px-3 py-1.5 font-body text-xs font-semibold text-brand-700 hover:bg-brand-50">
-                {copied ? t("support.copied") : t("support.copy")}
-              </button>
-            </div>
+          <div className="space-y-2">
             {phone ? (
               <a href={upiLink}
-                className={`mt-3 block w-full rounded-xl px-5 py-2.5 text-center font-body text-sm font-semibold ${info.link ? "border border-brand-300 bg-cream-50 text-brand-700" : "bg-brand-600 text-white hover:bg-brand-700"}`}>
+                className={`btn-press block w-full rounded-xl px-5 py-3 text-center font-body text-base font-semibold ${info.link ? "border border-brand-300 bg-cream-50 text-brand-700" : "bg-brand-600 text-white hover:bg-brand-700"}`}>
                 {t("support.upiPay")}
               </a>
             ) : (
-              <p className="mt-2 font-body text-xs text-dustyblue-600">{t("support.upiHint")}</p>
+              <p className="rounded-2xl bg-cream-100 p-3 text-center font-body text-sm text-dustyblue-600">{t("support.phoneHint")}</p>
             )}
+            {/* Backup for UPI apps that don't open payment links: copies the ID without showing it */}
+            <button type="button" onClick={copy}
+              className="block w-full py-1 text-center font-body text-xs font-semibold text-brand-700 hover:underline">
+              {copied ? t("support.copied") : t("support.copy")}
+            </button>
           </div>
         )}
       </div>

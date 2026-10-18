@@ -55,10 +55,10 @@ export const SCAMS_EN: Scam[] = [
   {
     id: "digital_arrest", category: "Government Impersonation", title: "'Digital Arrest' / Fake Police Scam", level: 3, icon: "police",
     how_it_works: "A caller claims to be from the police, customs or CBI, says you're involved in a crime, and demands you stay on a video call and transfer money to 'clear your name'.",
-    red_flags: ["Real police never 'arrest' anyone over a video call", "Demands that you transfer money to avoid arrest", "Threatens you and stops you from contacting family"],
+    red_flags: ["Real police never 'arrest' anyone over a video call", "Demands that you transfer money to avoid arrest", "Threatens you and stops you from contacting family or friends"],
     what_to_do: "Hang up. This is always a scam. Report at cybercrime.gov.in or call 1930.",
     example: "This is Mumbai Police Cyber Cell. A parcel in your name has drugs. Stay on this video call or you will be arrested.",
-    check: ["Hang up and tell a family member straight away", "There is no such thing as a 'digital arrest' in Indian law", "Call your local police station on its real number"],
+    check: ["Hang up and tell a family member or friend straight away", "There is no such thing as a 'digital arrest' in Indian law", "Call your local police station on its real number"],
   },
   {
     id: "tech_support_scam", category: "Tech Support", title: "Fake Tech Support Popup", level: 2, icon: "monitor",
@@ -149,7 +149,7 @@ export const SCAMS_EN: Scam[] = [
     check: ["Call your friend on their normal number", "Set a WhatsApp two-step PIN today"],
   },
   {
-    id: "family_emergency", category: "Family", title: "'Hi Mum, New Number' Emergency", level: 2, icon: "family", tool: "/scan-message",
+    id: "family_emergency", category: "Family & Friends", title: "'Hi Mum, New Number' Emergency", level: 2, icon: "family", tool: "/scan-message",
     how_it_works: "A message from an unknown number pretends to be your child, relative or friend who 'lost their phone' and urgently needs money for rent, a bill or a hospital.",
     red_flags: ["New number, same story: phone lost or broken", "Urgent request to send money to someone else's account", "Avoids a voice call"],
     what_to_do: "Call the person on their old number or ask a question only they would know before sending anything.",

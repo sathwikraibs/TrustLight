@@ -74,7 +74,7 @@ SCAM_LIBRARY = [
         "red_flags": [
             "Real police never conduct 'arrests' over video call",
             "Demands for money transfer to avoid arrest",
-            "Threatens and isolates you from contacting family",
+            "Threatens and isolates you from contacting family or friends",
         ],
         "what_to_do": "Hang up. This is always a scam. Report at cybercrime.gov.in or call 1930.",
     },
