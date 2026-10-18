@@ -22,7 +22,8 @@ for (const [name, vp] of [["m", { width: 390, height: 844 }], ["d", { width: 128
   await ctx.route(/onrender\.com|fonts\.g/, (r) => r.abort());
   const pg = await ctx.newPage();
   for (const p of pages) {
-    await pg.goto("http://127.0.0.1:4173" + p, { waitUntil: "networkidle" }).catch(() => {});
+    await pg.goto("http://127.0.0.1:4173/" + (p === "/" ? "" : "#" + p), { waitUntil: "networkidle" }).catch(() => {});
+    await pg.reload({ waitUntil: "networkidle" }).catch(() => {});
     await pg.waitForTimeout(1200);
     await pg.screenshot({ path: `${out}/${name}${p === "/" ? "-home" : p.replace(/\//g, "-")}.png`, fullPage: true });
   }
