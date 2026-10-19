@@ -175,6 +175,21 @@ export function isPhoneOrTablet(): boolean {
   }
 }
 
+/**
+ * Which "add to home screen" steps fit this browser, for when it doesn't offer the install button itself:
+ * iPhones never do, other browsers sometimes don't, Chrome stops offering it for a while after someone
+ * taps "No", and apps like Instagram open links in their own browser where installing isn't possible.
+ */
+export type InstallHow = "inapp" | "ios" | "samsung" | "firefox" | "chrome";
+export function installHow(): InstallHow {
+  const ua = (typeof navigator !== "undefined" && navigator.userAgent) || "";
+  if (/FBAN|FBAV|FB_IAB|Instagram|Snapchat|Line\/|Twitter|LinkedInApp|; wv\)|WhatsApp|Telegram/i.test(ua)) return "inapp";
+  if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && (navigator.maxTouchPoints || 0) > 1)) return "ios";
+  if (/SamsungBrowser/i.test(ua)) return "samsung";
+  if (/Firefox|FxiOS/i.test(ua)) return "firefox";
+  return "chrome";
+}
+
 export function isInstalledApp(): boolean {
   try {
     return window.matchMedia("(display-mode: standalone)").matches ||

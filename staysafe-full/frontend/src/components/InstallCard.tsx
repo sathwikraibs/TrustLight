@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useI18n } from "@/i18n";
-import { useInstall, isInstalledApp, isPhoneOrTablet } from "@/share";
+import { useInstall, isInstalledApp, isPhoneOrTablet, installHow } from "@/share";
 import { IconPhone, IconClose } from "@/icons";
 import { cameToReinstall } from "@/moved";
 
@@ -15,6 +15,8 @@ function hiddenOnHome(): boolean {
  * "Add TrustLight to your phone", so people can share messages, links and screenshots to it.
  * place="home": only when the phone offers it, and it can be closed.
  * place="settings": also shows how to share once TrustLight is on the phone.
+ * When the phone's browser doesn't offer the install button (iPhone, some browsers, Chrome after a "No",
+ * or a link opened inside Instagram/Facebook), the card shows the steps for that browser instead.
  * Never shown on laptops and desktop computers.
  */
 export function InstallCard({ place }: { place: "home" | "settings" }) {
@@ -27,8 +29,10 @@ export function InstallCard({ place }: { place: "home" | "settings" }) {
 
   if (!phone) return null;                       // "Add to your phone" means nothing on a laptop or PC
 
-  if (place === "home" && (hidden || !canInstall) && !done) return null;
-  if (place === "settings" && !canInstall && !installed && !done) return null;
+  const manual = !canInstall && !installed && !done;   // no install button from the browser: show the steps
+  const how = installHow();
+  if (place === "home" && hidden && !done) return null;
+  if (place === "home" && installed && !done) return null;
 
   const close = () => {
     setHidden(true);
@@ -52,7 +56,13 @@ export function InstallCard({ place }: { place: "home" | "settings" }) {
           <p className="mt-1 font-body text-sm text-ink-800">
             {done || (installed && !canInstall) ? t("install.done") : t("install.text")}
           </p>
-          {(done || installed) && <p className="mt-2 font-body text-xs text-dustyblue-600">{t("install.tip")}</p>}
+          {(done || installed) && how !== "ios" && <p className="mt-2 font-body text-xs text-dustyblue-600">{t("install.tip")}</p>}
+          {manual && (
+            <p className="mt-3 rounded-xl bg-cream-50 px-3 py-2.5 font-body text-sm font-semibold text-ink-900">
+              {t(`install.how.${how}`)}
+            </p>
+          )}
+          {how === "ios" && !installed && <p className="mt-2 font-body text-xs text-dustyblue-600">{t("install.iosNote")}</p>}
         </div>
       </div>
       {canInstall && !done && (

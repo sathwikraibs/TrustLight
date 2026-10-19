@@ -382,6 +382,14 @@ const enBase = {
     later: "Not now",
     done: "TrustLight is on your phone. In any app, tap Share and choose TrustLight.",
     tip: "Tip: in WhatsApp or Messages, press and hold a message, tap Share, then choose TrustLight.",
+    how: {
+      chrome: "To add it: tap the ⋮ menu at the top right, then “Add to Home screen” or “Install app”.",
+      samsung: "To add it: tap the ☰ menu at the bottom, then “Add page to”, then “Home screen”.",
+      firefox: "To add it: tap the ⋮ menu, then “Install” or “Add to Home screen”.",
+      ios: "To add it: tap the Share button (the square with an arrow), then “Add to Home Screen”.",
+      inapp: "This page is open inside another app, where it can't be added. Tap ⋮ (or ⋯) at the top and choose “Open in Chrome” or “Open in browser”, then add it from there.",
+    },
+    iosNote: "On iPhone, other apps can't share straight to TrustLight yet. Copy the message or link, or take a screenshot, and check it here.",
   },
 
 
