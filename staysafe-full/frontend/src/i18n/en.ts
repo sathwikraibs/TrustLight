@@ -377,7 +377,12 @@ const enBase = {
   },
   install: {
     title: "Add TrustLight to your phone",
-    installing: "Installing… Android is preparing TrustLight. The icon appears on your home screen in a minute or two. Please don't tap install again.",
+    installingTitle: "Installing TrustLight…",
+    installing: "Android is preparing TrustLight for your phone. This usually takes under a minute, but can take a few minutes. You can keep using TrustLight meanwhile, and please don't tap install again.",
+    installedTitle: "TrustLight is installed",
+    installedText: "TrustLight is now on your phone. Open it from here or from the TrustLight icon on your home screen.",
+    openApp: "Open TrustLight app",
+    openHint: "If it opens here in the browser instead, tap the TrustLight icon on your home screen.",
     text: "Then you can share any message, link, screenshot or file straight to TrustLight from WhatsApp, SMS or any app, and it is checked at once.",
     button: "Add to my phone",
     later: "Not now",

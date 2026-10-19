@@ -145,21 +145,93 @@ interface InstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 let installEvent: InstallPromptEvent | null = null;
-let installedNow = false;   // Android finished installing (the "appinstalled" event)
 const installListeners = new Set<() => void>();
+const notify = () => installListeners.forEach((f) => f());
+
+/**
+ * Where installing stands: "idle", "installing" (the person said yes; on Android, Google builds the app,
+ * which can take from seconds to several minutes) or "installed" (Android confirmed it).
+ * "installing" is remembered for 15 minutes, so a reload or a closed tab still shows the progress.
+ */
+export type InstallPhase = "idle" | "installing" | "installed";
+const STARTED_KEY = "staysafe.installStarted.v1";
+const WAIT_MS = 15 * 60 * 1000;
+let phase: InstallPhase = "idle";
+let pollTimer: ReturnType<typeof setTimeout> | null = null;
+
+function setPhase(p: InstallPhase): void {
+  if (phase === p) return;
+  phase = p;
+  try {
+    if (p === "installing") localStorage.setItem(STARTED_KEY, String(Date.now()));
+    else localStorage.removeItem(STARTED_KEY);
+  } catch { /* ignore */ }
+  notify();
+}
+
+/** Android tells pages whether their own app is installed (manifest "related_applications"). */
+async function appIsInstalled(): Promise<boolean> {
+  try {
+    const nav = navigator as Navigator & { getInstalledRelatedApps?: () => Promise<unknown[]> };
+    if (!nav.getInstalledRelatedApps) return false;
+    return (await nav.getInstalledRelatedApps()).length > 0;
+  } catch {
+    return false;
+  }
+}
+
+/** While installing, check every few seconds whether Android has finished. */
+function watchInstall(): void {
+  if (pollTimer) clearTimeout(pollTimer);
+  const tick = async () => {
+    pollTimer = null;
+    if (phase !== "installing") return;
+    if (await appIsInstalled()) { setPhase("installed"); return; }
+    let started = 0;
+    try { started = Number(localStorage.getItem(STARTED_KEY) || 0); } catch { /* ignore */ }
+    if (started && Date.now() - started > WAIT_MS) { setPhase("idle"); return; }   // gave up waiting: offer it again
+    pollTimer = setTimeout(tick, 3000);
+  };
+  pollTimer = setTimeout(tick, 2500);
+}
 
 export function listenForInstall(): void {
   try {
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       installEvent = e as InstallPromptEvent;
-      installListeners.forEach((f) => f());
+      notify();
     });
     window.addEventListener("appinstalled", () => {
       installEvent = null;
-      installedNow = true;
-      installListeners.forEach((f) => f());
+      setPhase("installed");
     });
+    // An install started earlier (before a reload) and not finished yet: keep showing its progress
+    let started = 0;
+    try { started = Number(localStorage.getItem(STARTED_KEY) || 0); } catch { /* ignore */ }
+    if (started && Date.now() - started < WAIT_MS) {
+      phase = "installing";
+      watchInstall();
+    } else if (started) {
+      try { localStorage.removeItem(STARTED_KEY); } catch { /* ignore */ }
+    }
+  } catch { /* ignore */ }
+}
+
+/**
+ * Opens the installed TrustLight app from the browser. On Android this asks the phone to open the
+ * site's address with an app, which is TrustLight once installed; if that can't happen, the page simply
+ * reloads in the browser.
+ */
+export function openInstalledApp(): void {
+  try {
+    const home = `${location.origin}/`;
+    if (/Android/i.test(navigator.userAgent)) {
+      location.href = `intent://${location.host}/#Intent;scheme=https;action=android.intent.action.VIEW;` +
+        `category=android.intent.category.BROWSABLE;S.browser_fallback_url=${encodeURIComponent(home)};end`;
+    } else {
+      location.href = home;
+    }
   } catch { /* ignore */ }
 }
 
@@ -201,8 +273,8 @@ export function isInstalledApp(): boolean {
   }
 }
 
-/** Whether the browser offers installing TrustLight, and a function that asks it to. */
-export function useInstall(): { canInstall: boolean; installedNow: boolean; install: () => Promise<boolean> } {
+/** Whether the browser offers installing TrustLight, where installing stands, and a function that asks it to. */
+export function useInstall(): { canInstall: boolean; phase: InstallPhase; install: () => Promise<boolean> } {
   const [, bump] = useState(0);
   useEffect(() => {
     const f = () => bump((n) => n + 1);
@@ -210,20 +282,24 @@ export function useInstall(): { canInstall: boolean; installedNow: boolean; inst
     return () => { installListeners.delete(f); };
   }, []);
   return {
-    canInstall: !!installEvent && !isInstalledApp(),
-    installedNow,
+    canInstall: !!installEvent && !isInstalledApp() && phase === "idle",
+    phase,
     install: async () => {
       const e = installEvent;
-      if (!e) return false;
+      if (!e || phase !== "idle") return false;
+      installEvent = null;              // one prompt per event: a second tap can never start a second install
+      notify();
       try {
         await e.prompt();
         const choice = await e.userChoice;
-        installEvent = null;
-        installListeners.forEach((f) => f());
-        return choice.outcome === "accepted";
-      } catch {
-        return false;
-      }
+        if (choice.outcome === "accepted") {
+          setPhase("installing");
+          watchInstall();
+          return true;
+        }
+      } catch { /* ignore */ }
+      notify();
+      return false;
     },
   };
 }

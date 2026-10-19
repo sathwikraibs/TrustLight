@@ -375,7 +375,12 @@ const hiBase: BaseDict = {
   },
   install: {
     title: "TrustLight को अपने फ़ोन में जोड़ें",
-    installing: "इंस्टॉल हो रहा है… Android, TrustLight को तैयार कर रहा है। एक-दो मिनट में आइकन आपकी होम स्क्रीन पर दिखेगा। कृपया दोबारा इंस्टॉल पर टैप न करें।",
+    installingTitle: "TrustLight इंस्टॉल हो रहा है…",
+    installing: "Android आपके फ़ोन के लिए TrustLight तैयार कर रहा है। आमतौर पर इसमें एक मिनट से कम लगता है, पर कुछ मिनट भी लग सकते हैं। तब तक आप TrustLight इस्तेमाल करते रहें, और कृपया दोबारा इंस्टॉल पर टैप न करें।",
+    installedTitle: "TrustLight इंस्टॉल हो गया",
+    installedText: "TrustLight अब आपके फ़ोन में है। इसे यहाँ से या होम स्क्रीन पर TrustLight आइकन से खोलें।",
+    openApp: "TrustLight ऐप खोलें",
+    openHint: "अगर यह ब्राउज़र में ही खुले, तो होम स्क्रीन पर TrustLight आइकन पर टैप करें।",
     text: "फिर आप WhatsApp, SMS या किसी भी ऐप से कोई भी मैसेज, लिंक, स्क्रीनशॉट या फ़ाइल सीधे TrustLight पर शेयर कर सकते हैं, और उसकी जाँच तुरंत होगी।",
     button: "मेरे फ़ोन में जोड़ें",
     later: "अभी नहीं",
