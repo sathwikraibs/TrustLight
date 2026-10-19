@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useI18n } from "@/i18n";
-import { useInstall, isInstalledApp, isPhoneOrTablet, installHow, openInstalledApp } from "@/share";
+import { useInstall, isInstalledApp, isPhoneOrTablet, installHow } from "@/share";
 import { IconPhone, IconClose, IconCheck, BrandMark } from "@/icons";
 import { cameToReinstall } from "@/moved";
 
@@ -16,7 +16,8 @@ function hiddenOnHome(): boolean {
  * place="home": only when it can be added, and it can be closed.
  * place="settings": also shows how to share once TrustLight is on the phone.
  * After "Add to my phone": an installing animation until Android confirms (that can take a few minutes),
- * then "TrustLight is installed" with a button that opens the app.
+ * then "TrustLight is installed" with how to open it (a website can't open its installed app itself:
+ * Chrome on Android keeps the link in the browser).
  * When the browser gives no install button (iPhone, some browsers, Chrome after a "No", or a link opened
  * inside Instagram/Facebook), the card shows that browser's own steps instead.
  * Never shown on laptops and desktop computers.
@@ -62,13 +63,7 @@ export function InstallCard({ place }: { place: "home" | "settings" }) {
           </div>
         )}
         {done && (
-          <>
-            <button type="button" onClick={openInstalledApp}
-              className="btn-press mt-4 w-full rounded-xl bg-brand-600 px-4 py-3 font-body text-sm font-bold text-cream-50 shadow-warm-sm hover:bg-brand-700">
-              {t("install.openApp")}
-            </button>
-            <p className="mt-2 font-body text-xs text-dustyblue-600">{t("install.openHint")}</p>
-          </>
+          <p className="mt-4 rounded-xl bg-cream-50 px-3 py-2.5 font-body text-sm font-semibold text-ink-900">{t("install.openSteps")}</p>
         )}
       </div>
     );

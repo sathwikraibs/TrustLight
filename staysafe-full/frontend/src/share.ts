@@ -218,23 +218,6 @@ export function listenForInstall(): void {
   } catch { /* ignore */ }
 }
 
-/**
- * Opens the installed TrustLight app from the browser. On Android this asks the phone to open the
- * site's address with an app, which is TrustLight once installed; if that can't happen, the page simply
- * reloads in the browser.
- */
-export function openInstalledApp(): void {
-  try {
-    const home = `${location.origin}/`;
-    if (/Android/i.test(navigator.userAgent)) {
-      location.href = `intent://${location.host}/#Intent;scheme=https;action=android.intent.action.VIEW;` +
-        `category=android.intent.category.BROWSABLE;S.browser_fallback_url=${encodeURIComponent(home)};end`;
-    } else {
-      location.href = home;
-    }
-  } catch { /* ignore */ }
-}
-
 /** A phone or tablet (not a laptop or desktop computer). Touch laptops still count as computers. */
 export function isPhoneOrTablet(): boolean {
   try {
