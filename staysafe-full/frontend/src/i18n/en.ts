@@ -377,6 +377,7 @@ const enBase = {
   },
   install: {
     title: "Add TrustLight to your phone",
+    installing: "Installing… Android is preparing TrustLight. The icon appears on your home screen in a minute or two. Please don't tap install again.",
     text: "Then you can share any message, link, screenshot or file straight to TrustLight from WhatsApp, SMS or any app, and it is checked at once.",
     button: "Add to my phone",
     later: "Not now",

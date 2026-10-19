@@ -21,7 +21,8 @@ function hiddenOnHome(): boolean {
  */
 export function InstallCard({ place }: { place: "home" | "settings" }) {
   const { t } = useI18n();
-  const { canInstall, install } = useInstall();
+  const { canInstall, installedNow, install } = useInstall();
+  const [busy, setBusy] = useState(false);
   const [hidden, setHidden] = useState(hiddenOnHome);
   const [done, setDone] = useState(false);
   const installed = isInstalledApp();
@@ -54,7 +55,7 @@ export function InstallCard({ place }: { place: "home" | "settings" }) {
         <div className="min-w-0 flex-1">
           <h2 className="font-heading text-base font-semibold text-ink-900">{t("install.title")}</h2>
           <p className="mt-1 font-body text-sm text-ink-800">
-            {done || (installed && !canInstall) ? t("install.done") : t("install.text")}
+            {done && !installedNow ? t("install.installing") : done || (installed && !canInstall) ? t("install.done") : t("install.text")}
           </p>
           {(done || installed) && how !== "ios" && <p className="mt-2 font-body text-xs text-dustyblue-600">{t("install.tip")}</p>}
           {manual && (
@@ -67,8 +68,9 @@ export function InstallCard({ place }: { place: "home" | "settings" }) {
       </div>
       {canInstall && !done && (
         <div className="mt-4 flex gap-2">
-          <button type="button" onClick={async () => { if (await install()) setDone(true); }}
-            className="btn-press flex-1 rounded-xl bg-brand-500 px-4 py-3 font-body text-sm font-bold text-cream-50 shadow-warm-sm hover:bg-brand-600">
+          <button type="button" disabled={busy}
+            onClick={async () => { if (busy) return; setBusy(true); const ok = await install(); setBusy(false); if (ok) setDone(true); }}
+            className="btn-press flex-1 disabled:opacity-60 rounded-xl bg-brand-500 px-4 py-3 font-body text-sm font-bold text-cream-50 shadow-warm-sm hover:bg-brand-600">
             {t("install.button")}
           </button>
           {place === "home" && (

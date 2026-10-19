@@ -145,6 +145,7 @@ interface InstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 let installEvent: InstallPromptEvent | null = null;
+let installedNow = false;   // Android finished installing (the "appinstalled" event)
 const installListeners = new Set<() => void>();
 
 export function listenForInstall(): void {
@@ -156,6 +157,7 @@ export function listenForInstall(): void {
     });
     window.addEventListener("appinstalled", () => {
       installEvent = null;
+      installedNow = true;
       installListeners.forEach((f) => f());
     });
   } catch { /* ignore */ }
@@ -200,7 +202,7 @@ export function isInstalledApp(): boolean {
 }
 
 /** Whether the browser offers installing TrustLight, and a function that asks it to. */
-export function useInstall(): { canInstall: boolean; install: () => Promise<boolean> } {
+export function useInstall(): { canInstall: boolean; installedNow: boolean; install: () => Promise<boolean> } {
   const [, bump] = useState(0);
   useEffect(() => {
     const f = () => bump((n) => n + 1);
@@ -209,6 +211,7 @@ export function useInstall(): { canInstall: boolean; install: () => Promise<bool
   }, []);
   return {
     canInstall: !!installEvent && !isInstalledApp(),
+    installedNow,
     install: async () => {
       const e = installEvent;
       if (!e) return false;
