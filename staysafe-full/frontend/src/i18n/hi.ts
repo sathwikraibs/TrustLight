@@ -429,7 +429,6 @@ const hiBase: BaseDict = {
       security: { name: "Mozilla Observatory", desc: "बताता है कि यह वेबसाइट आने वालों को कितनी अच्छी तरह सुरक्षित रखती है।" },
       connection: { name: "Qualys SSL Labs", desc: "इस वेबसाइट के सुरक्षित (HTTPS) कनेक्शन की जाँच करता है।" },
       safe: { name: "Google Safe Browsing", desc: "दिखाता है कि Google ने इस वेबसाइट को असुरक्षित बताया है या नहीं।" },
-      openssf: { name: "OpenSSF Best Practices Badge", desc: "जाँचता है कि TrustLight कितने सुरक्षित तरीके से बनाया और संभाला जाता है।" },
     },
     contactTitle: "कोई सवाल?",
     contact: "\"मदद चाहिए?\" पेज से हमें लिखें।",

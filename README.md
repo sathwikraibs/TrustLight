@@ -4,7 +4,6 @@
 [![Code security scan](https://github.com/sathwikraibs/StaySafe/actions/workflows/codeql.yml/badge.svg)](https://github.com/sathwikraibs/StaySafe/actions/workflows/codeql.yml)
 [![Daily accuracy test](https://github.com/sathwikraibs/StaySafe/actions/workflows/daily-accuracy.yml/badge.svg)](https://github.com/sathwikraibs/StaySafe/actions/workflows/daily-accuracy.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/15382/badge)](https://www.bestpractices.dev/projects/15382)
 
 **A light you can trust. A scam checker for everyday people in India.**
 

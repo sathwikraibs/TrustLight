@@ -409,10 +409,12 @@ def test_first_certificate_date_used_when_registration_hidden():
 
 
 def test_rdap_gives_age_when_whois_fails():
+    import datetime
+    created = (datetime.date.today() - datetime.timedelta(days=10)).isoformat()
     class R:
         status_code = 200
         def json(self):
-            return {"events": [{"eventAction": "registration", "eventDate": "2026-09-20T10:00:00Z"}],
+            return {"events": [{"eventAction": "registration", "eventDate": f"{created}T10:00:00Z"}],
                     "entities": [{"roles": ["registrar"], "vcardArray": ["vcard", [["fn", {}, "text", "Test Registrar"]]]}]}
     real_get = url_scanner.requests.get
     try:
@@ -420,7 +422,7 @@ def test_rdap_gives_age_when_whois_fails():
         url_scanner.whois = None
         url_scanner.requests.get = lambda *a, **k: R()
         info = url_scanner.whois_details("brand-new-shop.in")
-        assert info["registrar"] == "Test Registrar" and info["created"] == "2026-09-20" and info["age_days"] < 30, info
+        assert info["registrar"] == "Test Registrar" and info["created"] == created and info["age_days"] < 30, info
     finally:
         url_scanner.requests.get = real_get
         _restore()

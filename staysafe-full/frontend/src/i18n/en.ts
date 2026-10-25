@@ -431,7 +431,6 @@ const enBase = {
       security: { name: "Mozilla Observatory", desc: "Grades how well this website protects its visitors." },
       connection: { name: "Qualys SSL Labs", desc: "Tests the secure (HTTPS) connection of this website." },
       safe: { name: "Google Safe Browsing", desc: "Shows whether Google has marked this website as unsafe." },
-      openssf: { name: "OpenSSF Best Practices Badge", desc: "Checks how securely TrustLight is built and maintained." },
     },
     contactTitle: "Questions?",
     contact: "Use the Need Help page to write to us.",

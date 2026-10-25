@@ -859,7 +859,7 @@ const PRAISE = new RegExp([
   String.raw`\b(?:very|so|really) (?:useful|helpful|nice|good)\b`,
   String.raw`\b(?:best|good|nice|great|useful|helpful|super|awesome|wonderful|amazing) (?:app|site|website|tool)\b`,
   String.raw`\byou(?:'re| are) (?:good|great|the best|amazing|awesome|helpful|wonderful)\b`,
-  String.raw`^\s*(?:super|awesome|amazing|wonderful|excellent|fantastic|brilliant|nice|great|cool)\s*[!.👍🙏😊❤️]*\s*$`,
+  String.raw`^\s*(?:super|awesome|amazing|wonderful|excellent|fantastic|brilliant|nice|great|cool)\s*(?:[!.]|👍|🙏|😊|❤️?)*\s*$`,
   "बहुत (?:अच्छा|बढ़िया|बढिया)", "बढ़िया", "शानदार", "धन्यवाद", "शुक्रिया", "कमाल", "ज़बरदस्त|जबरदस्त",
   String.raw`\b(?:bahut (?:accha|acha|badhiya|badiya)|badhiya|badiya|shandar|shaandaar|dhanyavad|dhanyawad|shukriya|zabardast|jabardast|kamaal)\b`,
   "ಚೆನ್ನಾಗಿದೆ", "ಧನ್ಯವಾದ", "ಅದ್ಭುತ", "ಉಪಯುಕ್ತ", "ಒಳ್ಳೆಯ ಕೆಲಸ", "ಒಳ್ಳೆ ಕೆಲಸ", "ಸೂಪರ್",

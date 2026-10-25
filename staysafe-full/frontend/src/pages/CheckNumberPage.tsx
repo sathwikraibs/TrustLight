@@ -20,7 +20,7 @@ const CHAKSHU = "https://sancharsaathi.gov.in/sfc/";
 
 function looksUsable(v: string): boolean {
   const s = v.trim();
-  if (/^[\w.\-]{2,}@[a-z][a-z0-9]{1,}$/i.test(s.replace(/\s/g, ""))) return true;
+  if (/^[\w.-]{2,}@[a-z][a-z0-9]{1,}$/i.test(s.replace(/\s/g, ""))) return true;
   return /^[\d\s+\-().]{3,25}$/.test(s) && (s.match(/\d/g) || []).length >= 3;
 }
 
