@@ -378,10 +378,9 @@ const enBase = {
   install: {
     title: "Add TrustLight to your phone",
     installingTitle: "Installing TrustLight…",
-    installing: "Android is preparing TrustLight for your phone. This usually takes under a minute, but can take a few minutes. You can keep using TrustLight meanwhile, and please don't tap install again.",
-    installedTitle: "TrustLight is installed",
-    installedText: "TrustLight is now on your phone, ready to use.",
-    openSteps: "To open it: go to your home screen and tap the TrustLight icon. Or here in Chrome, tap ⋮ at the top right and choose “Open in app”.",
+    installing: "TrustLight will be installed on your phone within 5 minutes. Please wait, there is nothing else you need to do.",
+    installedTitle: "TrustLight is installed on your phone",
+    installedText: "From now on, you can do everything in the TrustLight app itself.",
     text: "Then you can share any message, link, screenshot or file straight to TrustLight from WhatsApp, SMS or any app, and it is checked at once.",
     button: "Add to my phone",
     later: "Not now",

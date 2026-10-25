@@ -152,9 +152,11 @@ const notify = () => installListeners.forEach((f) => f());
  * Where installing stands: "idle", "installing" (the person said yes; on Android, Google builds the app,
  * which can take from seconds to several minutes) or "installed" (Android confirmed it).
  * "installing" is remembered for 15 minutes, so a reload or a closed tab still shows the progress.
+ * "installed" is remembered too, so Chrome keeps saying the app is on the phone (until it is removed).
  */
 export type InstallPhase = "idle" | "installing" | "installed";
 const STARTED_KEY = "staysafe.installStarted.v1";
+const INSTALLED_KEY = "staysafe.installed.v1";
 const WAIT_MS = 15 * 60 * 1000;
 let phase: InstallPhase = "idle";
 let pollTimer: ReturnType<typeof setTimeout> | null = null;
@@ -165,6 +167,8 @@ function setPhase(p: InstallPhase): void {
   try {
     if (p === "installing") localStorage.setItem(STARTED_KEY, String(Date.now()));
     else localStorage.removeItem(STARTED_KEY);
+    if (p === "installed") localStorage.setItem(INSTALLED_KEY, "1");
+    else localStorage.removeItem(INSTALLED_KEY);
   } catch { /* ignore */ }
   notify();
 }
@@ -200,6 +204,7 @@ export function listenForInstall(): void {
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       installEvent = e as InstallPromptEvent;
+      if (phase === "installed") setPhase("idle");   // Chrome offers it again: the app was removed
       notify();
     });
     window.addEventListener("appinstalled", () => {
@@ -215,6 +220,12 @@ export function listenForInstall(): void {
     } else if (started) {
       try { localStorage.removeItem(STARTED_KEY); } catch { /* ignore */ }
     }
+    // Installed earlier: keep saying so in Chrome (until Chrome offers installing again, see above).
+    // Also notices an app installed before this was remembered.
+    let remembered = false;
+    try { remembered = localStorage.getItem(INSTALLED_KEY) === "1"; } catch { /* ignore */ }
+    if (remembered && phase === "idle") phase = "installed";
+    void appIsInstalled().then((yes) => { if (yes && phase !== "installed") setPhase("installed"); });
   } catch { /* ignore */ }
 }
 

@@ -16,8 +16,7 @@ function hiddenOnHome(): boolean {
  * place="home": only when it can be added, and it can be closed.
  * place="settings": also shows how to share once TrustLight is on the phone.
  * After "Add to my phone": an installing animation until Android confirms (that can take a few minutes),
- * then "TrustLight is installed" with how to open it (a website can't open its installed app itself:
- * Chrome on Android keeps the link in the browser).
+ * then "TrustLight is installed on your phone", which stays on the home page in Chrome from then on.
  * When the browser gives no install button (iPhone, some browsers, Chrome after a "No", or a link opened
  * inside Instagram/Facebook), the card shows that browser's own steps instead.
  * Never shown on laptops and desktop computers.
@@ -61,9 +60,6 @@ export function InstallCard({ place }: { place: "home" | "settings" }) {
           <div className="mt-4 h-2 overflow-hidden rounded-full bg-cream-50" aria-hidden>
             <div className="install-bar h-full w-1/3 rounded-full bg-brand-500" />
           </div>
-        )}
-        {done && (
-          <p className="mt-4 rounded-xl bg-cream-50 px-3 py-2.5 font-body text-sm font-semibold text-ink-900">{t("install.openSteps")}</p>
         )}
       </div>
     );
